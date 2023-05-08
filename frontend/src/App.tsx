@@ -4,7 +4,7 @@ import ResultsOutput from "./components/ResultsOutput";
 import WordInput from "./components/WordInput";
 
 function App() {
-  const [promptText, setPromptext] = useState<string>();
+  const [promptText, setPromptext] = useState<string>("");
   const inputPlaceholder = "Enter your Catalan query here...";
   const colorScheme = "purple";
   const onSubmit = (promptText: string) => {

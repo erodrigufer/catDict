@@ -17,7 +17,7 @@ interface Props {
 
 const WordInput = (props: Props) => {
   // The text value written by the user.
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState<string>("");
 
   const handleSubmit = (event: FormEvent) => {
     // Prevent the default behaviour of a button, e.g. redirecting
