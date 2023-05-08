@@ -9,7 +9,7 @@ const useDefinition = () => {
     // Define function that fetches definitions.
     const fetchDefinitions = () =>
       axios
-        .get<definitions>("http://localhost:3000/definition/parlar")
+        .get<definitions>("http://localhost:3000/definition/rei")
         .then((res) => res.data)
 
 return useQuery<definitions, Error>({
