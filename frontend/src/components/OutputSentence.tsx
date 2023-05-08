@@ -15,7 +15,7 @@ const OutputSentence = (props: Props) => {
 
   return (
     <>
-      <Flex ml={5} mt={5}>
+      <Flex ml={5} mt={5} flexWrap="wrap">
         {singleWords.map((word, index) => (
           <Tooltip
             key={index}
