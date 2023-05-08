@@ -1,4 +1,5 @@
 import OutputSentence from "./components/OutputSentence";
+import ResultsOutput from "./components/ResultsOutput";
 import WordInput from "./components/WordInput";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         isLoading={false}
       />
       <OutputSentence inputString="Test string, what up! More text ipsum lorem testum rerum, morem lirum." />
+      <ResultsOutput />
     </>
   );
 }
