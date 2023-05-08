@@ -2,16 +2,18 @@ import { Box, Flex, Tooltip } from "@chakra-ui/react";
 
 interface Props {
   inputString: string;
+  onClick: (promptText: string) => void;
 }
-
-const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-  const textContent = event.currentTarget.textContent;
-  console.log(textContent);
-};
 
 const OutputSentence = (props: Props) => {
   // Split the string into single words stored in unique array cells.
   const singleWords = props.inputString.split(" ");
+
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const textContent = event.currentTarget.textContent;
+    if (textContent) props.onClick(textContent);
+    console.log(textContent);
+  };
 
   return (
     <>

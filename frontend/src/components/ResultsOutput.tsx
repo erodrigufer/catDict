@@ -4,9 +4,10 @@ import OutputSentence from "./OutputSentence";
 
 interface Props {
   promptext: string;
+  onClick: (promptText: string) => void;
 }
 
-const ResultsOutput = ({ promptext }: Props) => {
+const ResultsOutput = ({ promptext, onClick }: Props) => {
   // if (promptext === "") return <p>No query yet...</p>;
   const query = useDefinition(promptext);
   if (query.isLoading) return <p>Loading...</p>;
@@ -26,7 +27,7 @@ const ResultsOutput = ({ promptext }: Props) => {
               <Td>{index + 1}</Td>
               {/* <Td>{definition}</Td> */}
               <Td>
-                <OutputSentence inputString={definition} />
+                <OutputSentence inputString={definition} onClick={onClick} />
               </Td>
             </Tr>
           ))}

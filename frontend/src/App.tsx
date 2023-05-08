@@ -28,7 +28,7 @@ function App() {
             isLoading={false}
             onSubmit={onSubmit}
           />
-          <ResultsOutput promptext={promptText} />
+          <ResultsOutput promptext={promptText} onClick={onSubmit} />
         </GridItem>
         <GridItem area={"footer"}>
           <p>Eduardo Rodriguez 2023</p>
