@@ -14,13 +14,17 @@ interface definitions {
 }
 
 const ResultsOutput = () => {
-  const query = useQuery({
+  const query = useQuery<definitions, Error>({
     queryKey: ["word"],
     queryFn: () =>
       axios
         .get<definitions>("http://localhost:3000/definition/edifici")
         .then((res) => res.data),
   });
+
+  if (query.isLoading) return <p>Loading...</p>;
+
+  if (query.error) return <p>{query.error.message}</p>;
 
   return (
     <>
@@ -29,7 +33,7 @@ const ResultsOutput = () => {
           <TableCaption>Definicions per a...</TableCaption>
           <Tbody>
             {query.data?.definitions.map((definition, index) => (
-              <Tr>
+              <Tr key={index}>
                 <Td>{index + 1}</Td>
                 <Td>{definition}</Td>
               </Tr>
