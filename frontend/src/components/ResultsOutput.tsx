@@ -6,22 +6,10 @@ import {
   Tr,
   Td,
 } from "@chakra-ui/table";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-
-interface definitions {
-  definitions: string[];
-}
+import useDefinition from "../hooks/useDefinition";
 
 const ResultsOutput = () => {
-  const query = useQuery<definitions, Error>({
-    queryKey: ["word"],
-    queryFn: () =>
-      axios
-        .get<definitions>("http://localhost:3000/definition/edifici")
-        .then((res) => res.data),
-  });
-
+  const query = useDefinition();
   if (query.isLoading) return <p>Loading...</p>;
 
   if (query.error) return <p>{query.error.message}</p>;
