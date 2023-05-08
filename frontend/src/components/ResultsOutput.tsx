@@ -1,11 +1,4 @@
-import {
-  TableContainer,
-  Table,
-  TableCaption,
-  Tbody,
-  Tr,
-  Td,
-} from "@chakra-ui/table";
+import { Table, TableCaption, Tbody, Tr, Td } from "@chakra-ui/table";
 import useDefinition from "../hooks/useDefinition";
 
 interface Props {
