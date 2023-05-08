@@ -1,8 +1,6 @@
 import express from 'express';
-import axios from 'axios';
 import cors from 'cors';
-import getDefinition from './routes/definition';
-import { error } from 'console';
+import { getDefinition } from './routes/definition';
 
 const app = express();
 // TODO: CORS for local development. Remove in production.
@@ -25,10 +23,10 @@ app.get('/definition/:word', async (req, res) => {
 // res.send(word)
 
 getDefinition(word)
-.then(resp => {
+.then((resp: any) => {
   res.send(resp)
 })
-.catch(err => {
+.catch((err: any) => {
   res.status(500).send('An error took place.');
   console.error(err)
 })
