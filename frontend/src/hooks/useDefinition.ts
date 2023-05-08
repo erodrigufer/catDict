@@ -12,6 +12,7 @@ const useDefinition = (lookupWord: string) => {
       axios
         .get<definitions>(url)
         .then((res) => res.data)
+        // TODO: handle error
 
 return useQuery<definitions, Error>({
     queryKey: ["definition", lookupWord],

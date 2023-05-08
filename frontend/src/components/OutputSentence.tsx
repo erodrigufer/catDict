@@ -12,7 +12,6 @@ const OutputSentence = (props: Props) => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const textContent = event.currentTarget.textContent;
     if (textContent) props.onClick(textContent);
-    console.log(textContent);
   };
 
   return (
