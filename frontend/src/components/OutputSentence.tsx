@@ -20,7 +20,7 @@ const OutputSentence = (props: Props) => {
           <Tooltip
             key={index}
             hasArrow
-            label="Look up word in dictionary."
+            label="Buscar paraula en el diccionari"
             // bg="yellow.800"
             // color="black"
           >

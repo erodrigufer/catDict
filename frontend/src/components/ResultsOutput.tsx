@@ -1,5 +1,6 @@
 import { Table, TableCaption, Tbody, Tr, Td } from "@chakra-ui/table";
 import useDefinition from "../hooks/useDefinition";
+import OutputSentence from "./OutputSentence";
 
 interface Props {
   promptext: string;
@@ -8,22 +9,25 @@ interface Props {
 const ResultsOutput = ({ promptext }: Props) => {
   // if (promptext === "") return <p>No query yet...</p>;
   const query = useDefinition(promptext);
-  if (query?.isLoading) return <p>Loading...</p>;
+  if (query.isLoading) return <p>Loading...</p>;
 
-  if (query?.error) return <p>{query.error.message}</p>;
+  if (query.error) return <p>{query.error.message}</p>;
 
   return (
     <>
       {/* <TableContainer> */}
       <Table variant="simple">
         <TableCaption placement="top">
-          Definicions per a la paraula '{promptext}'
+          Definicions de la paraula '{promptext}'
         </TableCaption>
         <Tbody>
-          {query?.data?.definitions.map((definition, index) => (
+          {query.data?.definitions.map((definition, index) => (
             <Tr key={index}>
               <Td>{index + 1}</Td>
-              <Td>{definition}</Td>
+              {/* <Td>{definition}</Td> */}
+              <Td>
+                <OutputSentence inputString={definition} />
+              </Td>
             </Tr>
           ))}
         </Tbody>

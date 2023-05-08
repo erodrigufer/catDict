@@ -1,7 +1,7 @@
 import { useState } from "react";
-import OutputSentence from "./components/OutputSentence";
 import ResultsOutput from "./components/ResultsOutput";
 import WordInput from "./components/WordInput";
+import { Grid, GridItem, Heading } from "@chakra-ui/layout";
 
 function App() {
   const [promptText, setPromptext] = useState<string>("");
@@ -12,14 +12,28 @@ function App() {
   };
   return (
     <>
-      <WordInput
-        placeholder={inputPlaceholder}
-        colorScheme={colorScheme}
-        isLoading={false}
-        onSubmit={onSubmit}
-      />
-      <OutputSentence inputString="Test string, what up! More text ipsum lorem testum rerum, morem lirum." />
-      <ResultsOutput promptext={promptText} />
+      <Grid
+        templateAreas={`"header"
+    "main"
+    "footer"`}
+        gap={4}
+      >
+        <GridItem area={"header"}>
+          <Heading>CAT</Heading>
+        </GridItem>
+        <GridItem area={"main"}>
+          <WordInput
+            placeholder={inputPlaceholder}
+            colorScheme={colorScheme}
+            isLoading={false}
+            onSubmit={onSubmit}
+          />
+          <ResultsOutput promptext={promptText} />
+        </GridItem>
+        <GridItem area={"footer"}>
+          <p>Eduardo Rodriguez 2023</p>
+        </GridItem>
+      </Grid>
     </>
   );
 }
