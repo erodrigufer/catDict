@@ -9,14 +9,14 @@ import {
 import useDefinition from "../hooks/useDefinition";
 
 interface Props {
-  lookupWord: string;
+  promptext: string;
 }
 
-const ResultsOutput = ({ lookupWord }: Props) => {
-  const query = useDefinition(lookupWord);
-  if (query.isLoading) return <p>Loading...</p>;
+const ResultsOutput = ({ promptext }: Props) => {
+  var query = useDefinition(promptext);
+  if (query?.isLoading) return <p>Loading...</p>;
 
-  if (query.error) return <p>{query.error.message}</p>;
+  if (query?.error) return <p>{query.error.message}</p>;
 
   return (
     <>
@@ -24,7 +24,7 @@ const ResultsOutput = ({ lookupWord }: Props) => {
         <Table variant="simple">
           <TableCaption>Definicions per a...</TableCaption>
           <Tbody>
-            {query.data?.definitions.map((definition, index) => (
+            {query?.data?.definitions.map((definition, index) => (
               <Tr key={index}>
                 <Td>{index + 1}</Td>
                 <Td>{definition}</Td>
