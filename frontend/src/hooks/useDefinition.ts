@@ -5,15 +5,16 @@ export interface definitions {
   definitions: string[];
 }
 
-const useDefinition = () => {
+const useDefinition = (lookupWord: string) => {
+    const url = 'http://localhost:3000/definition/' + lookupWord
     // Define function that fetches definitions.
     const fetchDefinitions = () =>
       axios
-        .get<definitions>("http://localhost:3000/definition/rei")
+        .get<definitions>(url)
         .then((res) => res.data)
 
 return useQuery<definitions, Error>({
-    queryKey: ["word"],
+    queryKey: ["definition", lookupWord],
     queryFn: fetchDefinitions
   });
 

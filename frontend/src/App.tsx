@@ -13,7 +13,7 @@ function App() {
         isLoading={false}
       />
       <OutputSentence inputString="Test string, what up! More text ipsum lorem testum rerum, morem lirum." />
-      <ResultsOutput />
+      <ResultsOutput lookupWord="gat" />
     </>
   );
 }
