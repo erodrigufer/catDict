@@ -1,15 +1,9 @@
 import { useState } from "react";
 import ResultsOutput from "./components/ResultsOutput";
 import WordInput from "./components/WordInput";
-import {
-  Container,
-  Flex,
-  Grid,
-  GridItem,
-  HStack,
-  Heading,
-} from "@chakra-ui/layout";
+import { Container, Flex, Grid, GridItem, HStack } from "@chakra-ui/layout";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
   const [promptText, setPromptext] = useState<string>("");
@@ -27,8 +21,8 @@ function App() {
     "footer"`}
         gap={4}
       >
-        <GridItem area={"header"}>
-          <Heading>CAT</Heading>
+        <GridItem area={"header"} marginTop={2}>
+          <Header />
         </GridItem>
         <GridItem
           area={"main"}
