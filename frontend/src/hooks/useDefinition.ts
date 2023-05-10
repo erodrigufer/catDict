@@ -12,7 +12,7 @@ function sanitizeQuery(query: string): string {
   query = index  !== -1 ? query.substring(index + 1) : query;
 
   // Remove points and commas and transform whole string to lowercase.
-  return query.toLowerCase().replace(".", "").replace(",","")
+  return query.toLowerCase().replace(".", "").replace(",","").replace(";","")
 }
 
 const useDefinition = (lookupWord: string) => {
