@@ -1,4 +1,4 @@
-import { Container, Flex, HStack, Heading, Image } from "@chakra-ui/react";
+import { Container, Flex, Heading, Image } from "@chakra-ui/react";
 
 function Header() {
   return (
