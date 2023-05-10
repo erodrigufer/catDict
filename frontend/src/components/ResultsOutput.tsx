@@ -2,6 +2,7 @@ import { Table, TableCaption, Tbody, Tr, Td } from "@chakra-ui/table";
 import useDefinition from "../hooks/useDefinition";
 import OutputSentence from "./OutputSentence";
 import sanitizeQuery from "../utils/sanitizeQuery";
+import { Box } from "@chakra-ui/layout";
 
 interface Props {
   promptext: string;
@@ -20,28 +21,24 @@ const ResultsOutput = ({ promptext, onClick }: Props) => {
 
   return (
     <>
-      {/* <TableContainer> */}
-      <Table variant="simple" size="md">
-        <TableCaption placement="top">
-          Definicions de la paraula '{promptext}'
-        </TableCaption>
-        <Tbody>
-          {query.data?.definitions.map((definition, index) => (
-            <Tr key={index}>
-              <Td>{index + 1}</Td>
-              {/* <Td>{definition}</Td> */}
-              <Td>
-                <OutputSentence inputString={definition} onClick={onClick} />
-              </Td>
-            </Tr>
-          ))}
-        </Tbody>
-      </Table>
-      {/* </TableContainer> */}
-
-      {/* {query.data?.definitions.map((definition, index) => (
-        <p key={index}>{definition}</p>
-      ))} */}
+      <Box width="4xl" borderWidth="1.5px" borderRadius="lg">
+        <Table variant="simple" size="md">
+          <TableCaption placement="top">
+            Definicions de la paraula '{promptext}'
+          </TableCaption>
+          <Tbody>
+            {query.data?.definitions.map((definition, index) => (
+              <Tr key={index}>
+                <Td>{index + 1}</Td>
+                {/* <Td>{definition}</Td> */}
+                <Td>
+                  <OutputSentence inputString={definition} onClick={onClick} />
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
     </>
   );
 };

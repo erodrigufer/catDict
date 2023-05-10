@@ -1,7 +1,14 @@
 import { useState } from "react";
 import ResultsOutput from "./components/ResultsOutput";
 import WordInput from "./components/WordInput";
-import { Grid, GridItem, HStack, Heading } from "@chakra-ui/layout";
+import {
+  Container,
+  Flex,
+  Grid,
+  GridItem,
+  HStack,
+  Heading,
+} from "@chakra-ui/layout";
 import Footer from "./components/Footer";
 
 function App() {
@@ -28,13 +35,17 @@ function App() {
           marginRight={sideMarginsMain}
           marginLeft={sideMarginsMain}
         >
-          <WordInput
-            placeholder={inputPlaceholder}
-            colorScheme={colorScheme}
-            isLoading={false}
-            onSubmit={onSubmit}
-          />
-          <ResultsOutput promptext={promptText} onClick={onSubmit} />
+          <Container maxW="4xl" centerContent>
+            <Flex direction="column" gap={4}>
+              <WordInput
+                placeholder={inputPlaceholder}
+                colorScheme={colorScheme}
+                isLoading={false}
+                onSubmit={onSubmit}
+              />
+              <ResultsOutput promptext={promptText} onClick={onSubmit} />
+            </Flex>
+          </Container>
         </GridItem>
         <GridItem area={"footer"} marginTop={3} marginBottom={3}>
           <HStack justify="space-evenly">
