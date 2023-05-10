@@ -37,15 +37,14 @@ const WordInput = (props: Props) => {
     setInputValue(event.target.value);
   };
 
-  const sideMargins = 5;
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Flex gap={2} mr={sideMargins} ml={sideMargins}>
+        <Flex gap={2}>
           <InputGroup>
             <InputLeftElement
               pointerEvents="none"
-              children={<SearchIcon color="gray.300" />}
+              children={<SearchIcon color="gray.400" />}
             />
             <Input
               placeholder={props.placeholder}

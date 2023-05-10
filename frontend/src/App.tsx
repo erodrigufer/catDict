@@ -7,7 +7,8 @@ import Footer from "./components/Footer";
 function App() {
   const [promptText, setPromptext] = useState<string>("");
   const inputPlaceholder = "Enter your Catalan query here...";
-  const colorScheme = "purple";
+  const colorScheme = "orange";
+  const sideMarginsMain = 3;
   const onSubmit = (promptText: string) => {
     setPromptext(promptText);
   };
@@ -22,7 +23,11 @@ function App() {
         <GridItem area={"header"}>
           <Heading>CAT</Heading>
         </GridItem>
-        <GridItem area={"main"}>
+        <GridItem
+          area={"main"}
+          marginRight={sideMarginsMain}
+          marginLeft={sideMarginsMain}
+        >
           <WordInput
             placeholder={inputPlaceholder}
             colorScheme={colorScheme}

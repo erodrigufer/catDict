@@ -1,6 +1,7 @@
 import { Table, TableCaption, Tbody, Tr, Td } from "@chakra-ui/table";
 import useDefinition from "../hooks/useDefinition";
 import OutputSentence from "./OutputSentence";
+import sanitizeQuery from "../utils/sanitizeQuery";
 
 interface Props {
   promptext: string;
@@ -9,6 +10,9 @@ interface Props {
 
 const ResultsOutput = ({ promptext, onClick }: Props) => {
   // if (promptext === "") return <p>No query yet...</p>;
+
+  promptext = sanitizeQuery(promptext);
+
   const query = useDefinition(promptext);
   if (query.isLoading) return <p>Loading...</p>;
 
