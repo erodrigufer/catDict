@@ -21,7 +21,7 @@ const ResultsOutput = ({ promptext, onClick }: Props) => {
   return (
     <>
       {/* <TableContainer> */}
-      <Table variant="simple">
+      <Table variant="simple" size="md">
         <TableCaption placement="top">
           Definicions de la paraula '{promptext}'
         </TableCaption>

@@ -36,7 +36,7 @@ function App() {
           />
           <ResultsOutput promptext={promptText} onClick={onSubmit} />
         </GridItem>
-        <GridItem area={"footer"} marginTop={3}>
+        <GridItem area={"footer"} marginTop={3} marginBottom={3}>
           <HStack justify="space-evenly">
             <Footer />
           </HStack>
