@@ -1,7 +1,8 @@
 import { useState } from "react";
 import ResultsOutput from "./components/ResultsOutput";
 import WordInput from "./components/WordInput";
-import { Grid, GridItem, Heading } from "@chakra-ui/layout";
+import { Grid, GridItem, HStack, Heading } from "@chakra-ui/layout";
+import Footer from "./components/Footer";
 
 function App() {
   const [promptText, setPromptext] = useState<string>("");
@@ -30,8 +31,10 @@ function App() {
           />
           <ResultsOutput promptext={promptText} onClick={onSubmit} />
         </GridItem>
-        <GridItem area={"footer"}>
-          <p>Eduardo Rodriguez 2023</p>
+        <GridItem area={"footer"} marginTop={3}>
+          <HStack justify="space-evenly">
+            <Footer />
+          </HStack>
         </GridItem>
       </Grid>
     </>
