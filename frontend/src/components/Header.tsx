@@ -5,12 +5,7 @@ function Header() {
   return (
     <>
       <Flex gap={2} justifyContent="center" alignItems="center">
-        <Image
-          alt="Senyera"
-          src="../../public/senyera.png"
-          borderRadius="md"
-          height={10}
-        />
+        <Image alt="Senyera" src="/senyera.png" borderRadius="md" height={10} />
         <Heading>Diccionari</Heading>
         <Box marginLeft="auto">
           <ColorMode />
