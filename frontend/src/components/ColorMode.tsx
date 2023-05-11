@@ -6,7 +6,7 @@ const ColorMode = () => {
   return (
     <>
       <IconButton
-        variant="ghost"
+        variant="outline"
         onClick={toggleColorMode}
         aria-label={"color mode"}
         icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
