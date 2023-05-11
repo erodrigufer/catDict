@@ -22,7 +22,9 @@ function App() {
         gap={4}
       >
         <GridItem area={"header"} marginTop={2}>
-          <Header />
+          <Container maxW="4xl">
+            <Header />
+          </Container>
         </GridItem>
         <GridItem
           area={"main"}

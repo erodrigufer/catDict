@@ -18,13 +18,7 @@ const OutputSentence = (props: Props) => {
     <>
       <Flex flexWrap="wrap">
         {singleWords.map((word, index) => (
-          <Tooltip
-            key={index}
-            hasArrow
-            label="Buscar paraula en el diccionari"
-            // bg="yellow.800"
-            // color="black"
-          >
+          <Tooltip key={index} hasArrow label="Buscar paraula en el diccionari">
             <Box
               key={index}
               mr={1}
