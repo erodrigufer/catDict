@@ -1,4 +1,4 @@
-import { Link } from "@chakra-ui/react";
+import { Link, Text } from "@chakra-ui/react";
 
 const Footer = () => {
   return (
@@ -8,7 +8,7 @@ const Footer = () => {
         isExternal
         color={"blackAlpha.600"}
       >
-        Eduardo Rodriguez &copy; 2023
+        <Text> Eduardo Rodriguez &copy; 2023</Text>
       </Link>
     </>
   );
