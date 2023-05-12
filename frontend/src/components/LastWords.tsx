@@ -1,17 +1,36 @@
 import { Button, Flex } from "@chakra-ui/react";
+import { useState } from "react";
+import sanitizeQuery from "../utils/sanitizeQuery";
+import useDefinition from "../hooks/useDefinition";
 
 interface Props {
-  lastWords: string[];
+  promptext: string;
   onClick: (promptText: string) => void;
 }
 
-const LastWords = ({ lastWords, onClick }: Props) => {
+const LastWords = ({ promptext, onClick }: Props) => {
+  const [lastWords, setLastWords] = useState<string[]>([]);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const textContent = event.currentTarget.textContent;
     if (textContent) onClick(textContent);
   };
 
-  // If no last words have been searched, render nothing.
+  // Do not execute a query if the promptext is an
+  // empty string.
+  if (promptext !== "") {
+    promptext = sanitizeQuery(promptext);
+
+    const query = useDefinition(promptext);
+
+    //   if (query.error) return <p>{query.error.message}</p>;
+
+    // If a definition was found, the query is valid, add it to
+    // the last words string array.
+    if (query.data?.definitions.length !== 0)
+      setLastWords([...lastWords, promptext]);
+  }
+
+  // If no words have been queried, render nothing.
   if (lastWords.length === 0) return null;
 
   return (

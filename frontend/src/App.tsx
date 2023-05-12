@@ -4,7 +4,6 @@ import WordInput from "./components/WordInput";
 import { Container, Flex, Grid, GridItem, HStack } from "@chakra-ui/layout";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import LastWords from "./components/LastWords";
 
 function App() {
   const [promptText, setPromptext] = useState<string>("");
@@ -40,7 +39,7 @@ function App() {
                 isLoading={false}
                 onSubmit={onSubmit}
               />
-              <LastWords lastWords={["casa", "gos"]} onClick={onSubmit} />
+              {/* <LastWords promptext={promptText} onClick={onSubmit} /> */}
               <ResultsOutput promptext={promptText} onClick={onSubmit} />
             </Flex>
           </Container>

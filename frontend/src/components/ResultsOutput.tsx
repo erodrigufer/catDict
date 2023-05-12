@@ -23,6 +23,7 @@ const ResultsOutput = ({ promptext, onClick }: Props) => {
   if (query.data.definitions.length === 0)
     return <Text>No definitions were found.</Text>;
 
+  // onSuccessfulQuery(promptext);
   return (
     <>
       <Box width="4xl" borderWidth="1.5px" borderRadius="lg">
