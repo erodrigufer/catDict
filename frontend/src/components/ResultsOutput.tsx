@@ -10,7 +10,7 @@ interface Props {
 }
 
 const ResultsOutput = ({ promptext, onClick }: Props) => {
-  // if (promptext === "") return <p>No query yet...</p>;
+  if (promptext === "") return null;
 
   promptext = sanitizeQuery(promptext);
 
