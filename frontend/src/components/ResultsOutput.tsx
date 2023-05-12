@@ -3,6 +3,7 @@ import useDefinition from "../hooks/useDefinition";
 import OutputSentence from "./OutputSentence";
 import sanitizeQuery from "../utils/sanitizeQuery";
 import { Box } from "@chakra-ui/layout";
+import { Text } from "@chakra-ui/react";
 
 interface Props {
   promptext: string;
@@ -18,6 +19,9 @@ const ResultsOutput = ({ promptext, onClick }: Props) => {
   if (query.isLoading) return <p>Loading...</p>;
 
   if (query.error) return <p>{query.error.message}</p>;
+
+  if (query.data.definitions.length === 0)
+    return <Text>No definitions were found.</Text>;
 
   return (
     <>
