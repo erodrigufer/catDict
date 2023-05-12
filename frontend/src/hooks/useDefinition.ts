@@ -16,7 +16,8 @@ const useDefinition = (lookupWord: string) => {
 
 return useQuery<definitions, Error>({
     queryKey: ["definition", lookupWord],
-    queryFn: fetchDefinitions
+    queryFn: fetchDefinitions,
+   enabled: !!lookupWord,
   });
 
 }

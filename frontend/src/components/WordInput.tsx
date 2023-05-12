@@ -11,7 +11,7 @@ import { FormEvent, SetStateAction, useState } from "react";
 interface Props {
   placeholder: string;
   colorScheme: string;
-  isLoading: boolean;
+  isLoading: boolean | undefined;
   onSubmit: (promptText: string) => void;
 }
 

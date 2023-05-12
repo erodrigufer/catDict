@@ -4,6 +4,10 @@ import WordInput from "./components/WordInput";
 import { Container, Flex, Grid, GridItem, HStack } from "@chakra-ui/layout";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+// import LastWords from "./components/LastWords";
+import sanitizeQuery from "./utils/sanitizeQuery";
+import useDefinition from "./hooks/useDefinition";
+import { Box } from "@chakra-ui/react";
 
 function App() {
   const [promptText, setPromptext] = useState<string>("");
@@ -11,8 +15,12 @@ function App() {
   const colorScheme = "yellow";
   const sideMarginsMain = 3;
   const onSubmit = (promptText: string) => {
+    promptText = sanitizeQuery(promptText);
     setPromptext(promptText);
   };
+
+  const query = useDefinition(promptText);
+
   return (
     <>
       <Grid
@@ -31,18 +39,31 @@ function App() {
           marginRight={sideMarginsMain}
           marginLeft={sideMarginsMain}
         >
-          <Container maxW="4xl" centerContent>
+          {/* <Container centerContent> */}
+          {/* Chakra container does not stretch its content to  
+            max. width therefore it is required to initialize a box
+            with a width. */}
+          <Box width="4xl" marginLeft="auto" marginRight="auto">
             <Flex direction="column" gap={4}>
               <WordInput
                 placeholder={inputPlaceholder}
                 colorScheme={colorScheme}
-                isLoading={false}
+                isLoading={query?.isLoading && !!promptText}
                 onSubmit={onSubmit}
               />
-              {/* <LastWords promptext={promptText} onClick={onSubmit} /> */}
-              <ResultsOutput promptext={promptText} onClick={onSubmit} />
+              {/* <LastWords
+                definitions={query?.data}
+                promptext={promptText}
+                onClick={onSubmit}
+              /> */}
+              {query?.error && <p>{query.error.message}</p>}
+              <ResultsOutput
+                definitions={query?.data}
+                promptext={promptText}
+                onClick={onSubmit}
+              />
             </Flex>
-          </Container>
+          </Box>
         </GridItem>
         <GridItem area={"footer"} marginTop={3} marginBottom={3}>
           <HStack justify="space-evenly">

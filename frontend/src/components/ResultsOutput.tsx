@@ -1,26 +1,18 @@
 import { Table, TableCaption, Tbody, Tr, Td } from "@chakra-ui/table";
-import useDefinition from "../hooks/useDefinition";
+import { definitions } from "../hooks/useDefinition";
 import OutputSentence from "./OutputSentence";
-import sanitizeQuery from "../utils/sanitizeQuery";
 import { Box } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/react";
 
 interface Props {
   promptext: string;
+  definitions: definitions | undefined;
   onClick: (promptText: string) => void;
 }
 
-const ResultsOutput = ({ promptext, onClick }: Props) => {
+const ResultsOutput = ({ promptext, definitions, onClick }: Props) => {
   if (promptext === "") return null;
-
-  promptext = sanitizeQuery(promptext);
-
-  const query = useDefinition(promptext);
-  if (query.isLoading) return <p>Loading...</p>;
-
-  if (query.error) return <p>{query.error.message}</p>;
-
-  if (query.data.definitions.length === 0)
+  if (definitions?.definitions.length === 0)
     return <Text>No definitions were found.</Text>;
 
   // onSuccessfulQuery(promptext);
@@ -32,7 +24,7 @@ const ResultsOutput = ({ promptext, onClick }: Props) => {
             Definicions de la paraula '{promptext}'
           </TableCaption>
           <Tbody>
-            {query.data?.definitions.map((definition, index) => (
+            {definitions?.definitions.map((definition, index) => (
               <Tr key={index}>
                 <Td>{index + 1}</Td>
                 {/* <Td>{definition}</Td> */}
