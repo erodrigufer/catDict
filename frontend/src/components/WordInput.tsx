@@ -44,7 +44,7 @@ const WordInput = (props: Props) => {
           <InputGroup>
             <InputLeftElement
               pointerEvents="none"
-              children={<SearchIcon color="gray.400" />}
+              children={<SearchIcon color="gray.500" />}
             />
             <Input
               placeholder={props.placeholder}
