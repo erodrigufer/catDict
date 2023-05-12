@@ -23,12 +23,7 @@ function App() {
   const query = useDefinition(promptText);
 
   useEffect(() => {
-    // const dataCopy = [...data];
-
-    if (query.data?.definitions.length !== 0)
-      // TODO: this step is the problem, changing the state re-renders the whole
-      // component, which makes me add one more value to lastWords, since the code
-      // is executed one more time. It is a bad idea to add props to the component state.
+    if (query.data?.definitions.length !== 0 && !lastWords.includes(promptText))
       setLastWords([...lastWords, promptText]);
   }, [query.data]);
 
