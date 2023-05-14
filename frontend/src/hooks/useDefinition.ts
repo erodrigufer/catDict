@@ -6,7 +6,7 @@ export interface definitions {
 }
 
 const useDefinition = (lookupWord: string) => {
-    const url = 'http://localhost:3000/definition/' + lookupWord
+    const url = 'http://5.75.140.61/definition/' + lookupWord
     // Define function that fetches definitions.
     const fetchDefinitions = () =>
       axios

@@ -12,7 +12,7 @@ app.get('/', (_req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-const port = 3000;
+const port = 80;
 
 app.get('/definition/:word', async (req, res) => {
   const { word } = req.params;
@@ -29,5 +29,5 @@ getDefinition(word)
 });
 
 app.listen(port, () => {
-  console.log(`Server listening on:   http://localhost:${port}`);
+  console.log(`Server listening on:   http://0.0.0.0:${port}`);
 });
