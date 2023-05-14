@@ -1,22 +1,17 @@
 # Use an official Node runtime as a parent image
-FROM node:10-alpine
+FROM node:latest
 
-# Set the working directory to /app/frontend
+# Set the working directory within the container to /app
+WORKDIR /app
+
+COPY . .
+
 WORKDIR /app/frontend
-
-# Copy the package.json and package-lock.json files to the container.
-COPY ./frontend/ .
-
-# Install dependencies.
 RUN npm install
-
 RUN npm run build
 
 WORKDIR /app/backend
-
-COPY ./backend .
-
-RUN tsc
+RUN npm install
 
 # Expose port 3000 for the React app
 EXPOSE 3000
