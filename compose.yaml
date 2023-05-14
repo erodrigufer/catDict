@@ -1,0 +1,7 @@
+services:
+  webapp:
+    image: webapp
+    ports:
+      - "80:80"
+    command: ["-d"]
+    restart: "no"
