@@ -49,6 +49,7 @@ const WordInput = (props: Props) => {
             <Input
               placeholder={props.placeholder}
               boxShadow="base"
+              variant="filled"
               value={inputValue}
               onChange={handleChange}
             />
