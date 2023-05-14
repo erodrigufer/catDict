@@ -22,8 +22,17 @@ function App() {
 
   const query = useDefinition(promptText);
 
+  // Add prompt to last words if the lastWords array does not already
+  // include the word being prompted.A
+  // The useEffect() hook is only executed if the query.data is changed
+  // in order to avoid a never-ending re-rendering of the component, every time
+  // that the lastWords (state) would be modified within the useEffect() hook.
   useEffect(() => {
-    if (query.data?.definitions.length !== 0 && !lastWords.includes(promptText))
+    if (
+      query.data?.definitions.length !== 0 &&
+      !lastWords.includes(promptText) && // Do not add element, if it already within the array.
+      promptText // Do not change the lastWords array if promptText is an empty string.
+    )
       setLastWords([...lastWords, promptText]);
   }, [query.data]);
 
