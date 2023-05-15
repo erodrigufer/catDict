@@ -37,7 +37,15 @@ function App() {
 
   return (
     <>
-      <Box width="2xl" marginLeft="auto" marginRight="auto">
+      <Box
+        width={{
+          base: "95%",
+          lg: "60%",
+          "2xl": "50%",
+        }}
+        marginLeft="auto"
+        marginRight="auto"
+      >
         <Grid
           templateAreas={`"header"
     "main"
@@ -48,10 +56,6 @@ function App() {
             <Header />
           </GridItem>
           <GridItem area={"main"}>
-            {/* <Container centerContent> */}
-            {/* Chakra container does not stretch its content to  
-            max. width therefore it is required to initialize a box
-            with a width. */}
             <Flex direction="column" gap={4}>
               <WordInput
                 placeholder={inputPlaceholder}
