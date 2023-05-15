@@ -18,7 +18,7 @@ const ResultsOutput = ({ promptext, definitions, onClick }: Props) => {
   // onSuccessfulQuery(promptext);
   return (
     <>
-      <Box width="4xl" borderWidth="1.5px" borderRadius="lg">
+      <Box borderWidth="1.5px" borderRadius="lg">
         <Table variant="simple" size="md">
           <TableCaption placement="top">
             Definicions de la paraula '{promptext}'

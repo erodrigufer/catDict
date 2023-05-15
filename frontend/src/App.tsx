@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ResultsOutput from "./components/ResultsOutput";
 import WordInput from "./components/WordInput";
-import { Container, Flex, Grid, GridItem, HStack } from "@chakra-ui/layout";
+import { Flex, Grid, GridItem, HStack } from "@chakra-ui/layout";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import LastWords from "./components/LastWords";
@@ -14,7 +14,6 @@ function App() {
   const [lastWords, setLastWords] = useState<string[]>([]);
   const inputPlaceholder = "Enter your Catalan query here...";
   const colorScheme = "yellow";
-  const sideMarginsMain = 3;
   const onSubmit = (promptText: string) => {
     promptText = sanitizeQuery(promptText);
     setPromptext(promptText);
@@ -38,27 +37,21 @@ function App() {
 
   return (
     <>
-      <Grid
-        templateAreas={`"header"
+      <Box width="2xl" marginLeft="auto" marginRight="auto">
+        <Grid
+          templateAreas={`"header"
     "main"
     "footer"`}
-        gap={4}
-      >
-        <GridItem area={"header"} marginTop={2}>
-          <Container maxW="4xl">
-            <Header />
-          </Container>
-        </GridItem>
-        <GridItem
-          area={"main"}
-          marginRight={sideMarginsMain}
-          marginLeft={sideMarginsMain}
+          gap={4}
         >
-          {/* <Container centerContent> */}
-          {/* Chakra container does not stretch its content to  
+          <GridItem area={"header"} marginTop={2}>
+            <Header />
+          </GridItem>
+          <GridItem area={"main"}>
+            {/* <Container centerContent> */}
+            {/* Chakra container does not stretch its content to  
             max. width therefore it is required to initialize a box
             with a width. */}
-          <Box width="4xl" marginLeft="auto" marginRight="auto">
             <Flex direction="column" gap={4}>
               <WordInput
                 placeholder={inputPlaceholder}
@@ -74,14 +67,14 @@ function App() {
                 onClick={onSubmit}
               />
             </Flex>
-          </Box>
-        </GridItem>
-        <GridItem area={"footer"} marginTop={3} marginBottom={3}>
-          <HStack justify="space-evenly">
-            <Footer />
-          </HStack>
-        </GridItem>
-      </Grid>
+          </GridItem>
+          <GridItem area={"footer"} marginTop={3} marginBottom={3}>
+            <HStack justify="space-evenly">
+              <Footer />
+            </HStack>
+          </GridItem>
+        </Grid>
+      </Box>
     </>
   );
 }
