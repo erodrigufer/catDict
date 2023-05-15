@@ -5,5 +5,4 @@ services:
       context: .
     ports:
       - "80:80"
-    command: ["-d"]
     restart: "unless-stopped"

@@ -18,9 +18,6 @@ RUN npm run build
 WORKDIR /app/backend
 RUN npm install
 
-# Expose port 80 for the React app
-EXPOSE 80
-
 # Set the command to start the Node server and serve the React app.
 CMD ["npm", "run", "start"]
 
