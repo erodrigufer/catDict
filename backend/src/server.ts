@@ -12,6 +12,7 @@ app.get('/', (_req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+// Serve HTTP at port 80.
 const port = 80;
 
 app.get('/definition/:word', async (req, res) => {
