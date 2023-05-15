@@ -1,7 +1,9 @@
 services:
   webapp:
-    image: webapp
+    container_name: cat-dict-webapp
+    build:
+      context: .
     ports:
       - "80:80"
     command: ["-d"]
-    restart: "no"
+    restart: "unless-stopped"
