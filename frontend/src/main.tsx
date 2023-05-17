@@ -6,6 +6,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import App from "./App.tsx";
 
 const queryClient = new QueryClient();
+// TODO: add config parameters:
+// - Do not re-fetch on re-entering window, etc.
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
