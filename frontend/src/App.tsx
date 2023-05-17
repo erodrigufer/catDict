@@ -8,11 +8,12 @@ import LastWords from "./components/LastWords";
 import sanitizeQuery from "./utils/sanitizeQuery";
 import useDefinition from "./hooks/useDefinition";
 import { Box } from "@chakra-ui/react";
+import ErrorBanner from "./components/ErrorBanner";
 
 function App() {
   const [promptText, setPromptext] = useState<string>("");
   const [lastWords, setLastWords] = useState<string[]>([]);
-  const inputPlaceholder = "Enter your Catalan query here...";
+  const inputPlaceholder = "Enter your Catalan word here...";
   const colorScheme = "yellow";
   const onSubmit = (promptText: string) => {
     promptText = sanitizeQuery(promptText);
@@ -64,7 +65,9 @@ function App() {
                 onSubmit={onSubmit}
               />
               <LastWords lastWords={lastWords} onClick={onSubmit} />
-              {query?.error && <p>{query.error.message}</p>}
+              {query?.error && (
+                <ErrorBanner errorMessage={query.error.message} />
+              )}
               <ResultsOutput
                 definitions={query?.data}
                 promptext={promptText}
