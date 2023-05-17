@@ -1,8 +1,26 @@
 services:
-  webapp:
+  catala:
     container_name: cat-dict-webapp
     build:
       context: .
-    ports:
-      - "80:80"
+        #    ports:
+        #- "80:80"
     restart: "unless-stopped"
+    networks:
+      - traefik-net
+    labels:
+      # Explicitly tell Traefik to expose this container
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-net"
+      - "traefik.http.routers.catala.rule=Path(`/catala`)"
+      # Allow request only from the predefined entry point named "web"
+      - "traefik.http.routers.catala.entrypoints=web"
+      # Middleware to stip path prefix, otherwise upstream servers will not 
+      # understand the requests.
+      - "traefik.http.middlewares.sp.stripprefix.prefixes=/catala"
+      - "traefik.http.middlewares.sp.stripprefix.forceSlash=true"
+      - "traefik.http.routers.catala.middlewares=sp@docker"
+
+networks:
+  traefik-net:
+    external: true
