@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
 import cheerio from 'cheerio';
 
 export interface definitions {
@@ -11,12 +11,23 @@ const url = 'https://dilc.org/' + word
 
 try {
     const response = await axios.get<string>(url)
-    //  return response.data
     return scrapeDefinitions(response.data)
-}catch (error) {
-    console.error(error)
-    // throw new Error('An error took place.')
-}
+} catch (error) {
+    // Error handling reference for axios and typescript:
+    // https://www.neldeles.com/blog/posts/handling-axios-errors-in-typescript
+    if (isAxiosError(error) && error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx.
+      console.error(error.response.data);
+      console.error(error.response.status);
+      console.error(error.response.headers);
+    } else if (isAxiosError(error) && error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.error(error.request);
+    } else console.error(error)
+  }
 
 }
 
@@ -42,3 +53,5 @@ function scrapeDefinitions(doc:string):definitions {
     return definitions
 
 }
+
+
