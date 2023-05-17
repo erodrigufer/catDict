@@ -29,9 +29,20 @@ function App() {
   // that the lastWords (state) would be modified within the useEffect() hook.
   useEffect(() => {
     if (
+      // Check that the query data is not undefined, since directly after running the
+      // useDefinition() hook the query has not finished fetching the data, so the
+      // [query.data] dependency of the useEffect hook is 'undefined', and the
+      // useEffect hook is executed.
+      // This caused the problem previously, that the length of the definitions could
+      // not be properly estimated.
+      // So words without a definition were added to the lastWords component.
+      query.data !== undefined &&
+      // Check that word at least has a definition, before adding it to the lastWords array.
       query.data?.definitions.length !== 0 &&
-      !lastWords.includes(promptText) && // Do not add element, if it already within the array.
-      promptText // Do not change the lastWords array if promptText is an empty string.
+      // Do not add element, if it already within the array.
+      !lastWords.includes(promptText) &&
+      // Do not change the lastWords array if promptText is an empty string.
+      promptText
     )
       setLastWords([...lastWords, promptText]);
   }, [query.data]);
