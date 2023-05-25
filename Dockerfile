@@ -15,8 +15,6 @@ RUN npm clean-install
 
 FROM node:19
 
-RUN npm install -g tsc
-
 # Set the working directory within the container to '/app',
 # both backend and frontend will be hosted in this directory.
 WORKDIR /app
