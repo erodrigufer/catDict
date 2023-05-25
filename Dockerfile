@@ -7,13 +7,15 @@ WORKDIR /app/frontend
 
 # Install node modules and cache them in 'build' image.
 COPY ./frontend/package.json ./frontend/package-lock.json . 
-RUN npm clean-install --production
+RUN npm clean-install --omit=dev
 
 WORKDIR /app/backend
 COPY ./backend/package.json ./backend/package-lock.json . 
-RUN npm clean-install --production
+RUN npm clean-install --omit=dev
 
 FROM node:19
+
+RUN npm install -g tsc
 
 # Copy the cached node_modules for both backend and frontend.
 COPY --from=build /app .
