@@ -18,7 +18,7 @@ res.send(resp)
 
 async function getDefinition(word:string) {
  // URL of the web page to scrape.
-const url = 'https://dilc.xxorg/' + word
+const url = 'https://dilc.org/' + word
 
 try {
     const response = await axios.get<string>(url)
