@@ -10,8 +10,8 @@ const useDefinition = (lookupWord: string) => {
   // Program automatically detects if running in prod or in dev mode.
   // If dev mode, then send requests to localhost.
   let url = '';
-    if (isDevEnv()) url = 'http://localhost/definition/' + lookupWord
-    else url = 'http://erodriguez.de/definition/' + lookupWord
+    if (isDevEnv()) url = 'http://localhost/v1/api/definition/' + lookupWord
+    else url = 'http://erodriguez.de/v1/api/definition/' + lookupWord
 
     // Define function that fetches definitions.
     const fetchDefinitions = async () =>{

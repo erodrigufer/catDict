@@ -1,13 +1,24 @@
 import axios, { isAxiosError } from "axios";
 import cheerio from 'cheerio';
+import { Router } from "express";
+import asyncErrorHandling from "../middleware/asyncErrorHandling";
 
-export interface definitions {
+interface definitions {
     definitions: string[]
 }
 
-export async function getDefinition(word:string) {
+const definition = Router();
+definition.get("/:word", asyncErrorHandling(async (req, res) => {
+  const { word } = req.params;
+
+const resp = await getDefinition(word)
+res.send(resp)
+
+}));
+
+async function getDefinition(word:string) {
  // URL of the web page to scrape.
-const url = 'https://dilc.org/' + word
+const url = 'https://dilc.xxorg/' + word
 
 try {
     const response = await axios.get<string>(url)
@@ -18,15 +29,15 @@ try {
     if (isAxiosError(error) && error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx.
-      console.error(error.response.data);
-      console.error(error.response.status);
-      console.error(error.response.headers);
+        throw new Error(`Axios (${error.response.status}) response error: ${error.response.data}`)
+        //   console.error(error.response.headers);
     } else if (isAxiosError(error) && error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
-        console.error(error.request);
-    } else console.error(error)
+        throw new Error(`Axios request error: ${error.request}`)
+        // console.error(error.request);
+    } else throw new Error('Unknown error took place when scraping web page.') // console.error(error)
   }
 
 }
@@ -46,7 +57,7 @@ function scrapeDefinitions(doc:string):definitions {
     }
 
     // For each <li> element print an index and the text of the element.
-    lis.each((index, element) => {
+    lis.each((_index, element) => {
         definitions.definitions.push($(element).text())
         // console.log(`${index+1}: ${$(element).text()}`);
     })
@@ -55,3 +66,4 @@ function scrapeDefinitions(doc:string):definitions {
 }
 
 
+export default definition;

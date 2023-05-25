@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import { getDefinition, definitions } from './routes/definition';
+import definition from './routes/definition';
 import path from 'path';
+import handleInternalServerError from './middleware/internalServerError';
 
 const app = express();
 // TODO: CORS for local development. Remove in production.
@@ -15,19 +16,12 @@ app.get('/', (_req, res) => {
 // Serve HTTP at port 80.
 const port = 80;
 
-app.get('/definition/:word', async (req, res) => {
-  const { word } = req.params;
+// Define routes.
+app.use('/v1/api/definition',definition);
 
-getDefinition(word)
-.then((resp: definitions | undefined ) => {
-  res.send(resp)
-})
-.catch((err: any) => {
-  res.status(500).send('An error took place.');
-  console.error(err)
-})
-
-});
+// Handle an internal server error, this middleware would be activated if any other
+// route or middleware executes the next() function.
+app.use(handleInternalServerError);
 
 app.listen(port, () => {
   console.log(`Server listening on:   http://0.0.0.0:${port}`);
