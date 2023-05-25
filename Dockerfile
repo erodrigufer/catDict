@@ -6,11 +6,11 @@ FROM node:19 AS build
 WORKDIR /app/frontend
 
 # Install node modules and cache them in 'build' image.
-COPY ./frontend/package*.json . 
+COPY ./frontend/package.json ./frontend/package-lock.json . 
 RUN npm clean-install --production
 
 WORKDIR /app/backend
-COPY ./backend/package*.json .
+COPY ./backend/package.json ./backend/package-lock.json . 
 RUN npm clean-install --production
 
 FROM node:19
