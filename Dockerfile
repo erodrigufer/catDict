@@ -3,15 +3,14 @@
 # See: https://github.com/goldbergyoni/nodebestpractices#-89-use-explicit-image-reference-avoid-latest-tag
 FROM node:19 AS build
 
-WORKDIR /app/frontend
 
 # Install node modules and cache them in 'build' image.
+WORKDIR /app/frontend
 COPY ./frontend/package.json ./frontend/package-lock.json . 
-RUN npm install
-
+RUN npm clean-install 
 WORKDIR /app/backend
 COPY ./backend/package.json ./backend/package-lock.json . 
-RUN npm install
+RUN npm clean-install 
 
 FROM node:19
 
@@ -26,7 +25,6 @@ COPY . .
 WORKDIR /app/frontend
 # Copy the cached node_modules.
 COPY --from=build /app/frontend/node_modules ./node_modules
-
 # Build frontend.
 RUN npm run build
 
@@ -36,4 +34,3 @@ COPY --from=build /app/backend/node_modules ./node_modules
 
 # Set the command to start the Node server and serve the React app.
 CMD ["npm", "run", "start"]
-
