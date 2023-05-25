@@ -7,11 +7,11 @@ WORKDIR /app/frontend
 
 # Install node modules and cache them in 'build' image.
 COPY ./frontend/package.json ./frontend/package-lock.json . 
-RUN npm clean-install 
+RUN npm install
 
 WORKDIR /app/backend
 COPY ./backend/package.json ./backend/package-lock.json . 
-RUN npm clean-install 
+RUN npm install
 
 FROM node:19
 
@@ -25,16 +25,14 @@ COPY . .
 # Build the frontend.
 WORKDIR /app/frontend
 # Copy the cached node_modules.
-COPY --from=build /app/frontend/node_modules .
+COPY --from=build /app/frontend/node_modules ./node_modules
 
 # Build frontend.
 RUN npm run build
 
 WORKDIR /app/backend
 # Copy the cached node_modules.
-COPY --from=build /app/backend/node_modules .
-
-
+COPY --from=build /app/backend/node_modules ./node_modules
 
 # Set the command to start the Node server and serve the React app.
 CMD ["npm", "run", "start"]
