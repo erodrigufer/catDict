@@ -1,8 +1,13 @@
 import express from 'express';
+import winston from 'winston';
 import cors from 'cors';
 import definition from './routes/definition';
 import path from 'path';
 import handleInternalServerError from './middleware/internalServerError';
+
+import setupLogging from './startup/logging';
+
+setupLogging();
 
 const app = express();
 // TODO: CORS for local development. Remove in production.
@@ -24,5 +29,5 @@ app.use('/v1/api/definition',definition);
 app.use(handleInternalServerError);
 
 app.listen(port, () => {
-  console.log(`Server listening on:   http://0.0.0.0:${port}`);
+  winston.info(`Server listening on port :${port}`);
 });
