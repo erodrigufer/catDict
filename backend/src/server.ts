@@ -16,16 +16,18 @@ const app = express();
 
 if (isDevEnv()) {
   winston.info(`Server running in dev mode.`);
-// TODO: fix CORS issues when not running in prod
-// Only use cors if in dev mode.
+  // Only use cors if in dev mode.
+  app.use(cors());
 }else{
   winston.info(`Server running in prod mode.`);
 }
 
-app.use(cors());
 // Middlewares for production: helmet to secure headers
 // and compression to compress responses.
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+  strictTransportSecurity: false
+}));
 app.use(compression());
 
 app.use(express.static(path.join(__dirname, 'build')));
