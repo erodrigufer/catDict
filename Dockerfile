@@ -6,10 +6,10 @@ FROM node:19 AS build
 
 # Install node modules and cache them in 'build' image.
 WORKDIR /app/frontend
-COPY ./frontend/package.json ./frontend/package-lock.json . 
+COPY ./frontend/package.json ./frontend/package-lock.json ./ 
 RUN npm clean-install 
 WORKDIR /app/backend
-COPY ./backend/package.json ./backend/package-lock.json . 
+COPY ./backend/package.json ./backend/package-lock.json ./
 RUN npm clean-install 
 
 FROM node:19
