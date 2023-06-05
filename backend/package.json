@@ -5,6 +5,7 @@
   "main": "./src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc && NODE_ENV=development node ./dist/server.js",
     "start": "tsc && NODE_ENV=production node ./dist/server.js"
   },
   "author": "Eduardo Rodriguez",

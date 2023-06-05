@@ -11,9 +11,15 @@ import isDevEnv from './util/detectNodeEnv';
 setupLogging();
 
 const app = express();
-console.log(`Dev env is:${isDevEnv()}`)
+
+if (isDevEnv()) {
+  winston.info(`Server running in dev mode.`);
 // Only use cors if in dev mode.
-if (isDevEnv()) app.use(cors());
+  app.use(cors());
+}else{
+  winston.info(`Server running in prod mode.`);
+}
+
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', (_req, res) => {
