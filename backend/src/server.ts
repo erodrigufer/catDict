@@ -6,12 +6,14 @@ import path from 'path';
 import handleInternalServerError from './middleware/internalServerError';
 
 import setupLogging from './startup/logging';
+import isDevEnv from './util/detectNodeEnv';
 
 setupLogging();
 
 const app = express();
-// TODO: CORS for local development. Remove in production.
-app.use(cors());
+console.log(`Dev env is:${isDevEnv()}`)
+// Only use cors if in dev mode.
+if (isDevEnv()) app.use(cors());
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', (_req, res) => {
