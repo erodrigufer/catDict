@@ -1,6 +1,8 @@
 import express from 'express';
 import winston from 'winston';
 import cors from 'cors';
+import helmet from "helmet";
+import compression from "compression";
 import definition from './routes/definition';
 import path from 'path';
 import handleInternalServerError from './middleware/internalServerError';
@@ -19,6 +21,11 @@ if (isDevEnv()) {
 }else{
   winston.info(`Server running in prod mode.`);
 }
+
+// Middlewares for production: helmet to secure headers
+// and compression to compress responses.
+app.use(helmet());
+app.use(compression());
 
 app.use(express.static(path.join(__dirname, 'build')));
 
