@@ -8,6 +8,10 @@
     "dev": "tsc && NODE_ENV=development node ./dist/server.js",
     "start": "tsc && NODE_ENV=production node ./dist/server.js"
   },
+  "engines": {
+    "node": "19.8.1",
+    "npm": "9.6.7" 
+  },
   "author": "Eduardo Rodriguez",
   "license": "ISC",
   "devDependencies": {
