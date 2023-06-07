@@ -24,6 +24,11 @@ if (isDevEnv()) {
 
 // Middlewares for production: helmet to secure headers
 // and compression to compress responses.
+// De-activate some security options, because otherwise,
+// helmet forces the browser to request some resources 
+// (like js scripts) only through a secure HTTPS conn.
+// Only until the HTTPS deployment possible this options
+// should be activated again.
 app.use(helmet({
   contentSecurityPolicy: false,
   strictTransportSecurity: false
