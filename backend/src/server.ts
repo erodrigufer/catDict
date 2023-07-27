@@ -19,6 +19,9 @@ if (isDevEnv()) {
   // Only use cors if in dev mode.
   app.use(cors());
 }else{
+  // Match any subdomain with at least one character (.{1,0}) or match the exact URL
+  // https://erodriguez.de, in other words allow requests coming from this addresses.
+  app.use(cors({origin:[/https:\/\/.{1,}\.erodriguez\.de/, 'https://erodriguez.de']}))
   winston.info(`Server running in prod mode.`);
 }
 
