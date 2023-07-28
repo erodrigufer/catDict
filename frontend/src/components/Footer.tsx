@@ -1,4 +1,5 @@
-import { Link, useColorModeValue } from "@chakra-ui/react";
+import { Text, HStack, Link, useColorModeValue } from "@chakra-ui/react";
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 const Footer = () => {
   // Link color definition for light-mode and dark-mode.
@@ -6,7 +7,10 @@ const Footer = () => {
   return (
     <>
       <Link href="https://github.com/erodrigufer" isExternal color={linkColor}>
-        Eduardo Rodriguez &copy; 2023
+        <HStack spacing={1}>
+          <span className="fi fi-es-ct"></span>
+          <Text>Eduardo Rodriguez &copy; 2023</Text>
+        </HStack>
       </Link>
     </>
   );
