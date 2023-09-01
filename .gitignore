@@ -1,3 +1,14 @@
 .DS_Store
 
 *.swp
+
+# Node.js dependencies
+**/node_modules/
+
+# Environment variables
+.envrc
+.env*.local
+.env
+
+
+
