@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/frontend" # Location of package manifests.
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/backend" # Location of package manifests.
+    schedule:
+      interval: "daily"
+  # Enable version updates for Docker
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
