@@ -4,20 +4,20 @@ updates:
     directory: "/frontend" # Location of package manifests.
     schedule:
       interval: "monthly"
-# Group Dependabot updates into one single PR
+# Group Dependabot updates into one single PR.
     groups:
       dependencies:
         patterns:
           - "*"
   - package-ecosystem: "npm"
-    directory: "/backend" # Location of package manifests.
+    directory: "/backend" 
     schedule:
       interval: "monthly"
     groups:
       dependencies:
         patterns:
           - "*"
-# Enable version updates for Docker
+# Enable version updates for Dockerfile.
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
