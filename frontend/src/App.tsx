@@ -13,7 +13,7 @@ import ErrorBanner from "./components/ErrorBanner";
 function App() {
   const [promptText, setPromptext] = useState<string>("");
   const [lastWords, setLastWords] = useState<string[]>([]);
-  const inputPlaceholder = "Enter your Catalan word here...";
+  const inputPlaceholder = "Escriu una paraula catalana aquí...";
   const colorScheme = "yellow";
   const onSubmit = (promptText: string) => {
     promptText = sanitizeQuery(promptText);

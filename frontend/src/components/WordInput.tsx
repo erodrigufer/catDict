@@ -57,10 +57,10 @@ const WordInput = (props: Props) => {
           <Button
             colorScheme={props.colorScheme}
             isLoading={props.isLoading}
-            loadingText="Loading..."
+            loadingText="Carregant..."
             type="submit"
           >
-            Submit
+            Buscar
           </Button>
         </Flex>
       </form>
