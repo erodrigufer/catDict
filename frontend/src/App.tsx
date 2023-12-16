@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import ResultsOutput from "./components/ResultsOutput";
-import WordInput from "./components/WordInput";
+import ResultsOutput from "./modules/ResultsOutput";
+import WordInput from "./modules/WordInput";
 import { Flex, Grid, GridItem, HStack } from "@chakra-ui/layout";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import LastWords from "./components/LastWords";
+import Footer from "./modules/Footer";
+import Header from "./modules/Header";
+import LastWords from "./modules/LastWords";
 import sanitizeQuery from "./utils/sanitizeQuery";
 import useDefinition from "./hooks/useDefinition";
 import { Box } from "@chakra-ui/react";
-import ErrorBanner from "./components/ErrorBanner";
+import ErrorBanner from "./modules/ErrorBanner";
+import Auth from "./modules/auth/components/Auth";
 
 function App() {
   const [promptText, setPromptext] = useState<string>("");
@@ -23,8 +24,8 @@ function App() {
   const query = useDefinition(promptText);
 
   // Add prompt to last words if the lastWords array does not already
-  // include the word being prompted.A
-  // The useEffect() hook is only executed if the query.data is changed
+  // include the word being prompted.
+  // The useEffect() hook is only executed if query.data is changed
   // in order to avoid a never-ending re-rendering of the component, every time
   // that the lastWords (state) would be modified within the useEffect() hook.
   useEffect(() => {
@@ -58,6 +59,7 @@ function App() {
         marginLeft="auto"
         marginRight="auto"
       >
+        <Auth />
         <Grid
           templateAreas={`"header"
     "main"
