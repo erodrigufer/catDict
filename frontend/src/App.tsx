@@ -1,20 +1,16 @@
 import { useState, useEffect } from "react";
-import ResultsOutput from "./modules/ResultsOutput";
-import WordInput from "./modules/WordInput";
 import { Flex, Grid, GridItem, HStack } from "@chakra-ui/layout";
 import Footer from "./modules/Footer";
 import Header from "./modules/Header";
-import LastWords from "./modules/LastWords";
 import sanitizeQuery from "./utils/sanitizeQuery";
 import useDefinition from "./hooks/useDefinition";
 import { Box } from "@chakra-ui/react";
-import ErrorBanner from "./modules/ErrorBanner";
 import Auth from "./modules/auth/components/Auth";
+import Main from "./modules/main/components.tsx/Main";
 
 function App() {
   const [promptText, setPromptext] = useState<string>("");
   const [lastWords, setLastWords] = useState<string[]>([]);
-  const inputPlaceholder = "Escriu una paraula catalana aquí...";
   const colorScheme = "yellow";
   const onSubmit = (promptText: string) => {
     promptText = sanitizeQuery(promptText);
@@ -59,7 +55,6 @@ function App() {
         marginLeft="auto"
         marginRight="auto"
       >
-        <Auth colorScheme={colorScheme} />
         <Grid
           templateAreas={`"header"
     "main"
@@ -71,20 +66,13 @@ function App() {
           </GridItem>
           <GridItem area={"main"}>
             <Flex direction="column" gap={4}>
-              <WordInput
-                placeholder={inputPlaceholder}
+              <Auth colorScheme={colorScheme} />
+              <Main
                 colorScheme={colorScheme}
-                isLoading={query?.isLoading && !!promptText}
+                promptText={promptText}
+                lastWords={lastWords}
                 onSubmit={onSubmit}
-              />
-              <LastWords lastWords={lastWords} onClick={onSubmit} />
-              {query?.error && (
-                <ErrorBanner errorMessage={query.error.message} />
-              )}
-              <ResultsOutput
-                definitions={query?.data}
-                promptext={promptText}
-                onClick={onSubmit}
+                query={query}
               />
             </Flex>
           </GridItem>

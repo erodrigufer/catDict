@@ -1,8 +1,8 @@
 import { Table, TableCaption, Tbody, Tr, Td } from "@chakra-ui/table";
-import { definitions } from "../hooks/useDefinition";
 import OutputSentence from "./OutputSentence";
 import { Box } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/react";
+import { definitions } from "../../../hooks/useDefinition";
 
 interface Props {
   promptext: string;
