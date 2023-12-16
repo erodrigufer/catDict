@@ -1,13 +1,17 @@
 import { Box, Button, Flex, Input } from "@chakra-ui/react";
 import { FormEvent } from "react";
 
+interface Props {
+  colorScheme: string;
+}
+
 const handleSubmit = (event: FormEvent) => {
   event.preventDefault();
 
   console.log("Submit username and password");
 };
 
-const Auth: React.FC = () => {
+const Auth: React.FC<Props> = ({ colorScheme }) => {
   return (
     <>
       <Box marginTop={4} marginBottom={4}>
@@ -24,8 +28,10 @@ const Auth: React.FC = () => {
               boxShadow="base"
               variant="filled"
             />
-            {/* TODO: Check Button of WOrdInput.tsx to complete this button */}
-            <Button type="submit">Enter</Button>
+            {/* TODO: Check Button of WordInput.tsx to complete this button */}
+            <Button colorScheme={colorScheme} type="submit">
+              Entrar
+            </Button>
           </Flex>
         </form>
       </Box>

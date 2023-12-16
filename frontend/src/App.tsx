@@ -59,7 +59,7 @@ function App() {
         marginLeft="auto"
         marginRight="auto"
       >
-        <Auth />
+        <Auth colorScheme={colorScheme} />
         <Grid
           templateAreas={`"header"
     "main"
