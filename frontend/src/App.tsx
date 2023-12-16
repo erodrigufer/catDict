@@ -72,21 +72,20 @@ function App() {
               <Header />
             </GridItem>
             <GridItem area={"main"}>
-              {/* TODO: Integrate Auth and Main components */}
               <Switch>
-                <Route path={"/login"} component={Footer} />
-                <Route path={basePath} component={Header} />
+                <Route path={"/login"}>
+                  <Auth colorScheme={colorScheme} />
+                </Route>
+                <Route path={basePath}>
+                  <Main
+                    colorScheme={colorScheme}
+                    promptText={promptText}
+                    lastWords={lastWords}
+                    onSubmit={onSubmit}
+                    query={query}
+                  />
+                </Route>
               </Switch>
-              <Flex direction="column" gap={4}>
-                <Auth colorScheme={colorScheme} />
-                <Main
-                  colorScheme={colorScheme}
-                  promptText={promptText}
-                  lastWords={lastWords}
-                  onSubmit={onSubmit}
-                  query={query}
-                />
-              </Flex>
             </GridItem>
             <GridItem area={"footer"} marginTop={3} marginBottom={3}>
               <HStack justify="space-evenly">

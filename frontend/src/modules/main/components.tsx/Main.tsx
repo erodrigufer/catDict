@@ -4,6 +4,7 @@ import ErrorBanner from "./ErrorBanner";
 import LastWords from "./LastWords";
 import ResultsOutput from "./ResultsOutput";
 import WordInput from "./WordInput";
+import { Flex } from "@chakra-ui/react";
 
 interface Props {
   promptText: string;
@@ -20,7 +21,7 @@ const Main: React.FC<Props> = ({
   promptText,
 }) => {
   return (
-    <>
+    <Flex direction="column" gap={4}>
       <WordInput
         colorScheme={colorScheme}
         isLoading={query?.isLoading && !!promptText}
@@ -33,7 +34,7 @@ const Main: React.FC<Props> = ({
         promptext={promptText}
         onClick={onSubmit}
       />
-    </>
+    </Flex>
   );
 };
 export default Main;
