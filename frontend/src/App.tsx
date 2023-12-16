@@ -5,8 +5,9 @@ import Header from "./modules/Header";
 import sanitizeQuery from "./utils/sanitizeQuery";
 import useDefinition from "./hooks/useDefinition";
 import { Box } from "@chakra-ui/react";
-import Auth from "./modules/auth/components/Auth";
+import Auth, { AuthProps } from "./modules/auth/components/Auth";
 import Main from "./modules/main/components.tsx/Main";
+import { Route, Router, Switch } from "wouter";
 
 function App() {
   const [promptText, setPromptext] = useState<string>("");
@@ -44,45 +45,57 @@ function App() {
       setLastWords([...lastWords, promptText]);
   }, [query.data]);
 
+  const BASE_URL = import.meta.env.BASE_URL;
+
+  /* wouter doesn't handle `/` as base path correctly */
+  const basePath = BASE_URL !== "/" ? BASE_URL : "";
+
   return (
     <>
-      <Box
-        width={{
-          base: "95%",
-          lg: "60%",
-          "2xl": "50%",
-        }}
-        marginLeft="auto"
-        marginRight="auto"
-      >
-        <Grid
-          templateAreas={`"header"
+      <Router base={basePath}>
+        <Box
+          width={{
+            base: "95%",
+            lg: "60%",
+            "2xl": "50%",
+          }}
+          marginLeft="auto"
+          marginRight="auto"
+        >
+          <Grid
+            templateAreas={`"header"
     "main"
     "footer"`}
-          gap={4}
-        >
-          <GridItem area={"header"} marginTop={2}>
-            <Header />
-          </GridItem>
-          <GridItem area={"main"}>
-            <Flex direction="column" gap={4}>
-              <Auth colorScheme={colorScheme} />
-              <Main
-                colorScheme={colorScheme}
-                promptText={promptText}
-                lastWords={lastWords}
-                onSubmit={onSubmit}
-                query={query}
-              />
-            </Flex>
-          </GridItem>
-          <GridItem area={"footer"} marginTop={3} marginBottom={3}>
-            <HStack justify="space-evenly">
-              <Footer />
-            </HStack>
-          </GridItem>
-        </Grid>
-      </Box>
+            gap={4}
+          >
+            <GridItem area={"header"} marginTop={2}>
+              <Header />
+            </GridItem>
+            <GridItem area={"main"}>
+              {/* TODO: Integrate Auth and Main components */}
+              <Switch>
+                <Route path={"/login"} component={Footer} />
+                <Route path={basePath} component={Header} />
+              </Switch>
+              <Flex direction="column" gap={4}>
+                <Auth colorScheme={colorScheme} />
+                <Main
+                  colorScheme={colorScheme}
+                  promptText={promptText}
+                  lastWords={lastWords}
+                  onSubmit={onSubmit}
+                  query={query}
+                />
+              </Flex>
+            </GridItem>
+            <GridItem area={"footer"} marginTop={3} marginBottom={3}>
+              <HStack justify="space-evenly">
+                <Footer />
+              </HStack>
+            </GridItem>
+          </Grid>
+        </Box>
+      </Router>
     </>
   );
 }

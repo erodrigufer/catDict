@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Input } from "@chakra-ui/react";
 import { FormEvent } from "react";
 
-interface Props {
+export interface AuthProps {
   colorScheme: string;
 }
 
@@ -11,7 +11,7 @@ const handleSubmit = (event: FormEvent) => {
   console.log("Submit username and password");
 };
 
-const Auth: React.FC<Props> = ({ colorScheme }) => {
+const Auth: React.FC<AuthProps> = ({ colorScheme }) => {
   return (
     <>
       <Box marginTop={4} marginBottom={4}>
