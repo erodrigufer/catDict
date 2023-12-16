@@ -9,24 +9,24 @@ export interface definitions {
 const useDefinition = (lookupWord: string) => {
   // Program automatically detects if running in prod or in dev mode.
   // If dev mode, then send requests to localhost.
-  let url = '';
-    if (isDevEnv()) url = 'http://localhost/v1/api/definition/' + lookupWord
-    else url = 'https://erodriguez.de/v1/api/definition/' + lookupWord
+  let url = "";
+  if (isDevEnv()) url = "http://localhost/v1/api/definition/" + lookupWord;
+  else url = "https://erodriguez.de/v1/api/definition/" + lookupWord;
 
-    // Define function that fetches definitions.
-    const fetchDefinitions = async () =>{
-      const response = await axios.get<definitions>(url)
-        return response.data
-    }
-        // TODO: handle error
+  // Define function that fetches definitions.
+  const fetchDefinitions = async () => {
+    const response = await axios.get<definitions>(url);
+    return response.data;
+  };
+  // TODO: handle error
 
-return useQuery<definitions, Error>({
+  return useQuery<definitions, Error>({
     queryKey: ["definition", lookupWord],
     queryFn: fetchDefinitions,
-   enabled: !!lookupWord, // Only if lookupWord is a valid string 
-   // the query will be executed.
+    // TODO: Add a timeout for the fetchDefinitions function.
+    enabled: !!lookupWord, // Only if lookupWord is a valid string
+    // the query will be executed.
   });
-
-}
+};
 
 export default useDefinition;

@@ -54,8 +54,7 @@ app.get("/login", (_req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-// Serve HTTP at port 80.
-const port = 80;
+// app.post
 
 // Define routes.
 app.use("/v1/api/definition", definition);
@@ -63,6 +62,9 @@ app.use("/v1/api/definition", definition);
 // Handle an internal server error, this middleware would be activated if any other
 // route or middleware executes the next() function.
 app.use(handleInternalServerError);
+
+// Serve HTTP at port 80.
+const port = 80;
 
 app.listen(port, () => {
   winston.info(`Server listening on port :${port}`);
