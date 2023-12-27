@@ -7,6 +7,7 @@ const checkAuthorization = (
 ) => {
   const authToken = req.header("Authorization");
 
+  // TODO: use secure random token.
   if (!authToken || authToken !== "eduardo_token") {
     return res.status(401).json({ error: "Invalid authorization token" });
   }

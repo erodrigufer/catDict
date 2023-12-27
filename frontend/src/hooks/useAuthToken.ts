@@ -21,7 +21,7 @@ const useAuthToken = (credentials: authCredentials) => {
   // Define function that sends POST request with authCredentials
   const fetchAuthToken = async () => {
     const response = await axios.post<string>(url, credentials);
-    return response.headers["x-token"];
+    return response.headers["x-auth-token"];
   };
   // TODO: handle error, is this necessary?
 
@@ -29,7 +29,7 @@ const useAuthToken = (credentials: authCredentials) => {
     queryKey: ["authToken", credentials],
     queryFn: fetchAuthToken,
     // TODO: Add a timeout for the fetchAuthToken function.
-    retry: false,
+    retry: false, // If auth fails, do not retry.
     enabled: !!credentials.username && !!credentials.password,
     // Only if username and password are valid strings
     // the query will be executed.

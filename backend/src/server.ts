@@ -10,8 +10,16 @@ import handleInternalServerError from "./middleware/internalServerError";
 import setupLogging from "./startup/logging";
 import isDevEnv from "./util/detectNodeEnv";
 import login from "./routes/login";
+import checkEnvVariables from "./startup/env";
 
 setupLogging();
+try {
+  checkEnvVariables();
+} catch (err) {
+  console.error(err);
+  // If env variables are missing, exit application.
+  process.exit(1);
+}
 
 const app = express();
 
@@ -20,7 +28,7 @@ if (isDevEnv()) {
   // Only use cors if in dev mode.
   app.use(
     cors({
-      exposedHeaders: ["x-token"],
+      exposedHeaders: ["x-auth-token"],
       credentials: true,
     }),
   );
@@ -30,7 +38,7 @@ if (isDevEnv()) {
   app.use(
     cors({
       origin: [/https:\/\/.{1,}\.erodriguez\.de/, "https://erodriguez.de"],
-      exposedHeaders: ["x-token"],
+      exposedHeaders: ["x-auth-token"],
     }),
   );
   winston.info(`Server running in prod mode.`);
