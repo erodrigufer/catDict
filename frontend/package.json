@@ -21,8 +21,7 @@
     "framer-motion": "^10.12.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "wouter": "^2.12.1",
-    "zustand": "^4.4.7"
+    "wouter": "^2.12.1"
   },
   "devDependencies": {
     "@types/node": "^20.1.7",

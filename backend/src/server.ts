@@ -11,6 +11,7 @@ import setupLogging from "./startup/logging";
 import isDevEnv from "./util/detectNodeEnv";
 import login from "./routes/login";
 import checkEnvVariables from "./startup/env";
+import generateRandomAuthToken from "./util/crypto";
 
 setupLogging();
 try {
@@ -20,6 +21,8 @@ try {
   // If env variables are missing, exit application.
   process.exit(1);
 }
+
+export const AUTH_TOKEN = generateRandomAuthToken(60);
 
 const app = express();
 

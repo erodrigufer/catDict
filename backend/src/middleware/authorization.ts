@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { AUTH_TOKEN } from "../server";
 
 const checkAuthorization = (
   req: Request,
@@ -7,8 +8,7 @@ const checkAuthorization = (
 ) => {
   const authToken = req.header("Authorization");
 
-  // TODO: use secure random token.
-  if (!authToken || authToken !== "eduardo_token") {
+  if (!authToken || authToken !== AUTH_TOKEN) {
     return res.status(401).json({ error: "Invalid authorization token" });
   }
 
