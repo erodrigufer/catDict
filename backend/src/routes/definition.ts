@@ -2,16 +2,20 @@ import axios, { isAxiosError } from "axios";
 import cheerio from "cheerio";
 import { Router } from "express";
 import asyncErrorHandling from "../middleware/asyncErrorHandling";
+import checkAuthorization from "../middleware/authorization";
 
 interface definitions {
   definitions: string[];
 }
 
 const definition = Router();
+definition.use(checkAuthorization);
 definition.get(
   "/:word",
   asyncErrorHandling(async (req, res) => {
     const { word } = req.params;
+    // TODO: Remove later!
+    console.log(req.header("Authorization"));
 
     const resp = await getDefinition(word);
     res.send(resp);

@@ -6,7 +6,10 @@ export interface definitions {
   definitions: string[];
 }
 
-const useDefinition = (lookupWord: string) => {
+const useDefinition = (
+  lookupWord: string,
+  token: string | undefined | null,
+) => {
   // Program automatically detects if running in prod or in dev mode.
   // If dev mode, then send requests to localhost.
   let url = "";
@@ -15,10 +18,12 @@ const useDefinition = (lookupWord: string) => {
 
   // Define function that fetches definitions.
   const fetchDefinitions = async () => {
-    const response = await axios.get<definitions>(url);
+    const response = await axios.get<definitions>(url, {
+      headers: { Authorization: token },
+    });
     return response.data;
   };
-  // TODO: handle error
+  // TODO: handle error, is this necessary?
 
   return useQuery<definitions, Error>({
     queryKey: ["definition", lookupWord],

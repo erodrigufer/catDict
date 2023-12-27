@@ -9,6 +9,7 @@ import handleInternalServerError from "./middleware/internalServerError";
 
 import setupLogging from "./startup/logging";
 import isDevEnv from "./util/detectNodeEnv";
+import login from "./routes/login";
 
 setupLogging();
 
@@ -17,13 +18,19 @@ const app = express();
 if (isDevEnv()) {
   winston.info(`Server running in dev mode.`);
   // Only use cors if in dev mode.
-  app.use(cors());
+  app.use(
+    cors({
+      exposedHeaders: ["x-token"],
+      credentials: true,
+    }),
+  );
 } else {
   // Match any subdomain with at least one character (.{1,0}) or match the exact URL
   // https://erodriguez.de, in other words allow requests coming from this addresses.
   app.use(
     cors({
       origin: [/https:\/\/.{1,}\.erodriguez\.de/, "https://erodriguez.de"],
+      exposedHeaders: ["x-token"],
     }),
   );
   winston.info(`Server running in prod mode.`);
@@ -50,14 +57,9 @@ app.get("/", (_req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.get("/login", (_req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
-// app.post
-
 // Define routes.
 app.use("/v1/api/definition", definition);
+app.use("/v1/api/login", login);
 
 // Handle an internal server error, this middleware would be activated if any other
 // route or middleware executes the next() function.

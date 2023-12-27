@@ -1,24 +1,32 @@
 import { useState, useEffect } from "react";
-import { Flex, Grid, GridItem, HStack } from "@chakra-ui/layout";
+import { Grid, GridItem, HStack } from "@chakra-ui/layout";
 import Footer from "./modules/Footer";
 import Header from "./modules/Header";
 import sanitizeQuery from "./utils/sanitizeQuery";
 import useDefinition from "./hooks/useDefinition";
 import { Box } from "@chakra-ui/react";
-import Auth, { AuthProps } from "./modules/auth/components/Auth";
+import Auth from "./modules/auth/components/Auth";
 import Main from "./modules/main/components.tsx/Main";
 import { Route, Router, Switch } from "wouter";
+import { AuthToken } from "./hooks/useAuthToken";
+import { navigate } from "wouter/use-location";
 
 function App() {
   const [promptText, setPromptext] = useState<string>("");
   const [lastWords, setLastWords] = useState<string[]>([]);
+  const [authToken, setAuthToken] = useState<AuthToken>();
   const colorScheme = "yellow";
-  const onSubmit = (promptText: string) => {
+  const onSubmitDefinition = (promptText: string) => {
     promptText = sanitizeQuery(promptText);
     setPromptext(promptText);
   };
 
-  const query = useDefinition(promptText);
+  const handleNewToken = (token: AuthToken) => {
+    setAuthToken(token);
+    navigate("/");
+  };
+
+  const query = useDefinition(promptText, authToken?.authToken);
 
   // Add prompt to last words if the lastWords array does not already
   // include the word being prompted.
@@ -35,7 +43,8 @@ function App() {
       // not be properly estimated.
       // So words without a definition were added to the lastWords component.
       query.data !== undefined &&
-      // Check that word at least has a definition, before adding it to the lastWords array.
+      // Check that word at least has a definition, before adding it to the
+      // lastWords array.
       query.data?.definitions.length !== 0 &&
       // Do not add element, if it already within the array.
       !lastWords.includes(promptText) &&
@@ -74,14 +83,17 @@ function App() {
             <GridItem area={"main"}>
               <Switch>
                 <Route path={"/login"}>
-                  <Auth colorScheme={colorScheme} />
+                  <Auth
+                    colorScheme={colorScheme}
+                    handleNewToken={handleNewToken}
+                  />
                 </Route>
                 <Route path={basePath}>
                   <Main
                     colorScheme={colorScheme}
                     promptText={promptText}
                     lastWords={lastWords}
-                    onSubmit={onSubmit}
+                    onSubmit={onSubmitDefinition}
                     query={query}
                   />
                 </Route>
