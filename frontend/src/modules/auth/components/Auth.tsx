@@ -24,7 +24,7 @@ const Auth: React.FC<AuthProps> = ({ colorScheme, handleNewToken }) => {
     password: passwordSubmitValue,
   });
   useEffect(() => {
-    if (token.data !== undefined)
+    if (token.data !== undefined && !token.isError)
       // TODO: fix, remove || "token"
       handleNewToken({ authToken: token.data || "token" });
   }, [token.data]);

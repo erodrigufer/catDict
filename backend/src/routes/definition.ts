@@ -14,9 +14,6 @@ definition.get(
   "/:word",
   asyncErrorHandling(async (req, res) => {
     const { word } = req.params;
-    // TODO: Remove later!
-    console.log(req.header("Authorization"));
-
     const resp = await getDefinition(word);
     res.send(resp);
   }),
