@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Input } from "@chakra-ui/react";
 import { FormEvent, SetStateAction, useEffect, useState } from "react";
 import useAuthToken, { AuthToken } from "../../../hooks/useAuthToken";
+import ErrorBanner from "../../main/components.tsx/ErrorBanner";
 
 interface AuthProps {
   colorScheme: string;
@@ -19,15 +20,21 @@ const Auth: React.FC<AuthProps> = ({ colorScheme, handleNewToken }) => {
     setPasswordSubmitValue(passwordValue);
   };
 
-  const token = useAuthToken({
+  const authQuery = useAuthToken({
     username: usernameSubmitValue,
     password: passwordSubmitValue,
   });
+
+  // Handle new auth token in parent component,
+  // only if query is valid.
   useEffect(() => {
-    if (token.data !== undefined && !token.isError)
-      // TODO: fix, remove || "token"
-      handleNewToken({ authToken: token.data || "token" });
-  }, [token.data]);
+    if (
+      authQuery.data !== undefined &&
+      authQuery.data !== null &&
+      !authQuery.isError
+    )
+      handleNewToken({ authToken: authQuery.data });
+  }, [authQuery.data]);
 
   const handleChangeUsername = (event: {
     target: { value: SetStateAction<string> };
@@ -43,6 +50,9 @@ const Auth: React.FC<AuthProps> = ({ colorScheme, handleNewToken }) => {
 
   return (
     <>
+      {authQuery?.error && (
+        <ErrorBanner errorMessage={authQuery.error.message} />
+      )}
       <Box marginTop={4} marginBottom={4}>
         <form onSubmit={handleSubmit}>
           <Flex direction="column" gap={4}>

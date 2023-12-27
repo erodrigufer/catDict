@@ -26,10 +26,10 @@ const useAuthToken = (credentials: authCredentials) => {
   // TODO: handle error, is this necessary?
 
   return useQuery<string | undefined | null, Error>({
-    queryKey: ["authToken", credentials.username],
+    queryKey: ["authToken", credentials],
     queryFn: fetchAuthToken,
     // TODO: Add a timeout for the fetchAuthToken function.
-    //
+    retry: false,
     enabled: !!credentials.username && !!credentials.password,
     // Only if username and password are valid strings
     // the query will be executed.

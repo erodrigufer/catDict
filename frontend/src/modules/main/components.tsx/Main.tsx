@@ -29,11 +29,13 @@ const Main: React.FC<Props> = ({
       />
       <LastWords lastWords={lastWords} onClick={onSubmit} />
       {query?.error && <ErrorBanner errorMessage={query.error.message} />}
-      <ResultsOutput
-        definitions={query?.data}
-        promptext={promptText}
-        onClick={onSubmit}
-      />
+      {query?.isSuccess && (
+        <ResultsOutput
+          definitions={query?.data}
+          promptext={promptText}
+          onClick={onSubmit}
+        />
+      )}
     </Flex>
   );
 };
