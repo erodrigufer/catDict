@@ -13,7 +13,7 @@ interface Props {
 const ResultsOutput = ({ promptext, definitions, onClick }: Props) => {
   if (promptext === "") return null;
   if (definitions?.definitions.length === 0)
-    return <Text>No definitions were found.</Text>;
+    return <Text>Cap definició no ha sigut trobada.</Text>;
 
   // onSuccessfulQuery(promptext);
   return (

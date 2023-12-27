@@ -28,6 +28,11 @@ function App() {
 
   const query = useDefinition(promptText, authToken?.authToken);
 
+  useEffect(() => {
+    if (authToken?.authToken === null || authToken?.authToken === undefined)
+      navigate("/login");
+  }, [authToken]);
+
   // Add prompt to last words if the lastWords array does not already
   // include the word being prompted.
   // The useEffect() hook is only executed if query.data is changed
