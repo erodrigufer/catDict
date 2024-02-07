@@ -9,7 +9,6 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { FormEvent, SetStateAction, useState } from "react";
 
 interface Props {
-  placeholder: string;
   colorScheme: string;
   isLoading: boolean | undefined;
   onSubmit: (promptText: string) => void;
@@ -47,7 +46,7 @@ const WordInput = (props: Props) => {
               children={<SearchIcon color="gray.500" />}
             />
             <Input
-              placeholder={props.placeholder}
+              placeholder="Escriu una paraula catalana aquí..."
               boxShadow="base"
               variant="filled"
               value={inputValue}
@@ -57,10 +56,10 @@ const WordInput = (props: Props) => {
           <Button
             colorScheme={props.colorScheme}
             isLoading={props.isLoading}
-            loadingText="Loading..."
+            loadingText="Carregant..."
             type="submit"
           >
-            Submit
+            Buscar
           </Button>
         </Flex>
       </form>

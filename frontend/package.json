@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": ".",
   "scripts": {
-    "dev": "concurrently \"cd ../backend && npm run dev\" \"vite\"",
+    "dev": "concurrently \"cd ../backend &&  source ./.envrc && npm run dev\" \"vite\"",
     "build": "tsc && vite build --emptyOutDir",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -20,7 +20,8 @@
     "axios": "^1.4.0",
     "framer-motion": "^10.12.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "wouter": "^2.12.1"
   },
   "devDependencies": {
     "@types/node": "^20.1.7",
@@ -29,10 +30,12 @@
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
-    "concurrently": "^8.0.1",
+    "concurrently": "^8.2.2",
+    "cypress": "^13.6.1",
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "prettier": "^3.1.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
   }
