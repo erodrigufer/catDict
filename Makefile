@@ -1,3 +1,5 @@
+.PHONY: build run deploy
+
 build:
 	docker build . --tag catdict_webapp
 

@@ -6,6 +6,13 @@ The following environment variables must be present at `/backend/.envrc` to run 
 export AUTH_USERNAME=<username_to_login_to_webapp>
 export AUTH_PASSWORD=<password_of_username>
 export API_URL=<url of backend> # only relevant for prod deployments
+export TF_VAR_name="ero_cat_dict"
+export TF_VAR_ami_id="ami-006fb64513923c5ce" # ami for eu-north-1
+export TF_VAR_instance_type="t4g.micro"
+export TF_VAR_auth_username=${AUTH_USERNAME}
+export TF_VAR_auth_password=${AUTH_PASSWORD}
+export TF_VAR_api_url=${API_URL}
+export TF_VAR_domain="test.example.com" # Domain will point to EC2.
 ```
 
 ## Development
@@ -36,3 +43,18 @@ make run
 ```
 
 Docker container is now reachable at [http://0.0.0.0](http://0.0.0.0).
+
+## Deployment
+
+```bash
+cd terraform/webapp
+terraform init -upgrade
+# Check that you have setup all required env. variables!
+terraform apply
+```
+
+You will as output the IP of the instance that now hosts your webapp (and if `TF_VAR_domain` was set the domain for your instance).
+
+⚠️ if `https` has not been configured, you have to establish a connection by explicitly using `http` in your browser.
+
+⚠️ it might take some time after your deployment finishes, for you to be able to connect to the EC2 instance that hosts your webapp and receive a successful response. The instance might be quite _small_ and it will therefore require more time to setup Docker and host the webapp.
