@@ -32,5 +32,7 @@ WORKDIR /app/backend
 # Copy the cached node_modules.
 COPY --from=build /app/backend/node_modules ./node_modules
 
+EXPOSE 80
+
 # Set the command to start the Node server and serve the React app.
 CMD ["npm", "run", "start"]

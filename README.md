@@ -15,3 +15,19 @@ To run the webapp locally for development:
 cd frontend
 npm run dev
 ```
+
+## Docker
+
+### Build
+
+```bash
+docker build . -t catdict_webapp
+```
+
+### Run
+
+```bash
+docker run -d --rm -p 80:80 --env AUTH_USERNAME=eduardo --env AUTH_PASSWORD=<password> catdict_webapp
+```
+
+Docker container is reachable at [http://0.0.0.0](http://0.0.0.0).

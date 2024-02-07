@@ -36,15 +36,20 @@ if (isDevEnv()) {
     }),
   );
 } else {
+  winston.info(`Server running in prod mode.`);
   // Match any subdomain with at least one character (.{1,0}) or match the exact URL
   // https://erodriguez.de, in other words allow requests coming from this addresses.
   app.use(
     cors({
-      origin: [/https:\/\/.{1,}\.erodriguez\.de/, "https://erodriguez.de"],
+      // TODO: fix origins in prod mode.
+      // origin: [
+      //   /https:\/\/.{1,}\.erodriguez\.de/,
+      //   "https://erodriguez.de",
+      // ],
       exposedHeaders: ["x-auth-token"],
+      credentials: true,
     }),
   );
-  winston.info(`Server running in prod mode.`);
 }
 
 // Middlewares for production: helmet to secure headers
