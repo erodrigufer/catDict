@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import isDevEnv from "../utils/detectNodeEnv";
+import { getProdURL } from "../utils/envVariables";
 
 export interface definitions {
   definitions: string[];
@@ -14,8 +15,7 @@ const useDefinition = (
   // If dev mode, then send requests to localhost.
   let url = "";
   if (isDevEnv()) url = "http://localhost/v1/api/definition/" + lookupWord;
-  // TODO: use env variable for prod domain.
-  else url = "http://0.0.0.0/v1/api/definition/" + lookupWord;
+  else url = getProdURL() + "/v1/api/definition/" + lookupWord;
 
   // Define function that fetches definitions.
   const fetchDefinitions = async () => {
