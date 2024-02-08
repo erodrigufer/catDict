@@ -7,7 +7,6 @@ resource "aws_launch_template" "launch_template" {
     AUTH_USERNAME = var.auth_username
     AUTH_PASSWORD = var.auth_password
     API_URL       = var.api_url
-    FILE_NAME     ="/var/www/index.html"
   }))
 }
 

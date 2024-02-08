@@ -6,6 +6,13 @@ The following environment variables must be present at `/backend/.envrc` to run 
 export AUTH_USERNAME=<username_to_login_to_webapp>
 export AUTH_PASSWORD=<password_of_username>
 export API_URL=<url of backend> # only relevant for prod deployments
+export TF_VAR_name="ero_cat_dict"
+export TF_VAR_ami_id="ami-006fb64513923c5ce" # ami for eu-north-1
+export TF_VAR_instance_type="t4g.micro"
+export TF_VAR_user_data_file_name="user_data.sh"
+export TF_VAR_auth_username=${AUTH_USERNAME}
+export TF_VAR_auth_password="pass"
+export TF_VAR_api_url=${API_URL}
 ```
 
 ## Development
