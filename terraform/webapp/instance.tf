@@ -19,7 +19,7 @@ resource "aws_instance" "ec2_instance" {
 }
 
 resource "aws_security_group" "sg_ec2" {
-  name = "${var.name}-sg"
+  name = "${var.name}"
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_http_ingress" {
