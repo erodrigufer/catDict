@@ -13,15 +13,14 @@ variable "instance_type" {
   type        = string
 }
 
-variable "user_data_file_name" {
-  description = "Name of file in working directory with user data used to initialize EC2 instance."
-  type        = string
-  default     = null # Variable is optional.
+variable "auth_username" {
+  type = string
 }
 
-variable "user_data" {
-  description = "User data to provide when launching an instance. Use this to provide plain text instead of file."
-  type        = string
-  default     = null # Variable is optional.
+variable "auth_password" {
+  type = string
 }
 
+variable "api_url" {
+  type = string
+}
