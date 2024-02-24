@@ -24,3 +24,9 @@ variable "auth_password" {
 variable "api_url" {
   type = string
 }
+
+variable "domain" {
+  description = "Domain will point to EC2 instance where webapp is deployed."
+  type        = string
+  default     = null
+}
