@@ -1,7 +1,7 @@
 # Use an official Node runtime as a parent image. 
 # Use a specific version!
 # See: https://github.com/goldbergyoni/nodebestpractices#-89-use-explicit-image-reference-avoid-latest-tag
-FROM node:19 AS build
+FROM node:21 AS build
 
 
 # Install node modules and cache them in 'build' image.
@@ -12,7 +12,7 @@ WORKDIR /app/backend
 COPY ./backend/package.json ./backend/package-lock.json ./
 RUN npm clean-install 
 
-FROM node:19
+FROM node:21
 
 # Set the working directory within the container to '/app',
 # both backend and frontend will be hosted in this directory.
