@@ -1,0 +1,14 @@
+# Files
+.dockerignore
+.env.*
+.envrc
+Dockerfile
+Makefile
+**/*.md
+
+# Docker compose is only used for local testing.
+compose.yaml 
+
+# Folders
+.git/
+.github/
