@@ -39,15 +39,6 @@ resource "aws_vpc_security_group_ingress_rule" "allow_http_ingress" {
   to_port           = 80
 }
 
-# TODO: comment out this sg rule after debugging.
-resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ingress" {
-  security_group_id = aws_security_group.sg_ec2.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 22
-  ip_protocol       = "tcp"
-  to_port           = 22
-}
-
 resource "aws_vpc_security_group_egress_rule" "allow_all_egress" {
   security_group_id = aws_security_group.sg_ec2.id
   cidr_ipv4         = "0.0.0.0/0"
