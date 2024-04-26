@@ -1,10 +1,8 @@
-# TODO: check if there is a problem when no domain is defined.
 locals {
-  root_domain             = join(".", slice(split(".", var.domain), 1, 3))
-  domain_without_protocol = replace(var.domain, "https://", "")
+  root_domain             = try(join(".", slice(split(".", var.domain), 1, 3)), null)
+  domain_without_protocol = try(replace(var.domain, "https://", ""), null)
 }
 
-# TODO: check if there is a problem when no domain is defined.
 data "aws_route53_zone" "selected" {
   count = var.domain != null ? 1 : 0
   name  = local.root_domain
@@ -20,7 +18,8 @@ resource "aws_route53_record" "backend" {
   records = [aws_instance.ec2_instance.public_ip]
 }
 
-resource "aws_route53_health_check" "example" {
+resource "aws_route53_health_check" "backend_healthcheck" {
+  count   = var.domain != null ? 1 : 0
   fqdn              = aws_route53_record.backend[0].fqdn
   port              = 80
   type              = "HTTP"

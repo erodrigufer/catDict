@@ -9,5 +9,5 @@ output "instance_ip" {
 }
 
 output "fqdn" {
-  value = aws_route53_record.backend[0].fqdn
+  value = try(aws_route53_record.backend[0].fqdn, "")
 }
