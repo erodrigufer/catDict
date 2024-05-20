@@ -1,10 +1,13 @@
 # Files
 .dockerignore
+**/.gitignore
 .env.*
-.envrc
+**/.envrc
 Dockerfile
 Makefile
 **/*.md
+.DS_Store
+.terraform-version
 
 # Docker compose is only used for local testing.
 compose.yaml 
@@ -12,3 +15,5 @@ compose.yaml
 # Folders
 .git/
 .github/
+terraform
+.aws

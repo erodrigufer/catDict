@@ -19,7 +19,7 @@ resource "aws_route53_record" "backend" {
 }
 
 resource "aws_route53_health_check" "backend_healthcheck" {
-  count   = var.domain != null ? 1 : 0
+  count             = var.domain != null ? 1 : 0
   fqdn              = aws_route53_record.backend[0].fqdn
   port              = 80
   type              = "HTTP"

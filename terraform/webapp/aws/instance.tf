@@ -16,7 +16,7 @@ resource "aws_launch_template" "launch_template" {
 
 resource "aws_instance" "ec2_instance" {
   vpc_security_group_ids = [aws_security_group.sg_ec2.id]
-  subnet_id = aws_default_subnet.default_az1.id
+  subnet_id              = aws_default_subnet.default_az1.id
 
   launch_template {
     id = aws_launch_template.launch_template.id
