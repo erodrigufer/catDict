@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": ".",
   "scripts": {
-    "dev": "concurrently \"cd ../backend &&  source ./.envrc && npm run dev\" \"vite\"",
+    "dev": "concurrently \"cd .. && source ./.envrc && cd ./backend && npm run dev\" \"vite\"",
     "build": "tsc && vite build --emptyOutDir",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
