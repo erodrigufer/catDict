@@ -5,14 +5,25 @@ The following environment variables must be present at `/backend/.envrc` to run 
 ```bash
 export AUTH_USERNAME=<username_to_login_to_webapp>
 export AUTH_PASSWORD=<password_of_username>
-export API_URL=<url of backend> # only relevant for prod deployments
-export TF_VAR_name="ero_cat_dict"
-export TF_VAR_ami_id="ami-006fb64513923c5ce" # ami for eu-north-1
-export TF_VAR_instance_type="t4g.micro"
+export API_URL=<url_of_backend> # only relevant for prod deployments
+# http://0.0.0.0 handles prod deployment.
+
+# AWS --------------
+export TF_VAR_name=<name_of_EC2_instance>
+export TF_VAR_ami_id=<AMI_for_EC2>
+export TF_VAR_instance_type=<EC2_size>
 export TF_VAR_auth_username=${AUTH_USERNAME}
 export TF_VAR_auth_password=${AUTH_PASSWORD}
 export TF_VAR_api_url=${API_URL}
 export TF_VAR_domain="test.example.com" # Domain will point to EC2.
+
+# DO ---------------
+export TF_VAR_do_token=<do_API_token>
+export TF_VAR_docker_repo=<Docker_repository_with_image> # example/image:latest
+export TF_VAR_droplet_name=<droplet_name>
+export TF_VAR_droplet_image=<droplet_image>
+export TF_VAR_droplet_region=<droplet_region>
+export TF_VAR_droplet_size=<droplet_size>
 ```
 
 ## Development

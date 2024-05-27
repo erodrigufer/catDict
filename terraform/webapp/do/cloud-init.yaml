@@ -1,0 +1,19 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+
+packages:
+  - docker.io
+  - git
+
+runcmd:
+  - [sh, -c, "systemctl start docker"]
+  - [sh, -c, "systemctl enable docker"]
+  - [sh, -c, "docker pull ${DOCKER_REPO}"]
+  - [
+      sh,
+      -c,
+      "docker run -d --rm -p 80:80 --env AUTH_USERNAME=${AUTH_USERNAME} --env AUTH_PASSWORD=${AUTH_PASSWORD} --env API_URL=${API_URL} ${DOCKER_REPO}",
+    ]
+
+final_message: "The system is finally up, after $UPTIME seconds"
