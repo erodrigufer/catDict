@@ -14,11 +14,13 @@ variable "instance_type" {
 }
 
 variable "auth_username" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "auth_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "api_url" {
@@ -28,5 +30,6 @@ variable "api_url" {
 variable "domain" {
   description = "Domain will point to EC2 instance where webapp is deployed."
   type        = string
+  sensitive   = true
   default     = null
 }
