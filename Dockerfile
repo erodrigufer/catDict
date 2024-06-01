@@ -1,7 +1,7 @@
 # Use an official Node runtime as a parent image. 
 # Use a specific version!
 # See: https://github.com/goldbergyoni/nodebestpractices#-89-use-explicit-image-reference-avoid-latest-tag
-FROM node:21 AS build
+FROM node:22 AS build
 
 # Install node modules and cache them in 'build' image.
 WORKDIR /app/frontend
@@ -13,7 +13,7 @@ RUN npm clean-install
 
 # -------------------------------------------------------------
 
-FROM node:21-alpine
+FROM node:22-alpine
 
 # Setup a system group and user to run the webapp,
 # in order to avoid the security risk  of running 
