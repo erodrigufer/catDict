@@ -57,15 +57,17 @@ Docker container is now reachable at [http://0.0.0.0](http://0.0.0.0).
 
 ## Deployment
 
+### DO
+
 ```bash
-cd terraform/webapp
+cd terraform/webapp/do
 terraform init -upgrade
 # Check that you have setup all required env. variables!
 terraform apply
 ```
 
-You will as output the IP of the instance that now hosts your webapp (and if `TF_VAR_domain` was set the domain for your instance).
-
 ⚠️ if `https` has not been configured, you have to establish a connection by explicitly using `http` in your browser.
+
+_Related to the AWS deployment_:
 
 ⚠️ it might take some time after your deployment finishes, for you to be able to connect to the EC2 instance that hosts your webapp and receive a successful response. The instance might be quite _small_ and it will therefore require more time to setup Docker and host the webapp.
