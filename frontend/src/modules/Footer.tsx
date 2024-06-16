@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <>
       <Link href="https://github.com/erodrigufer" isExternal color={linkColor}>
-        Eduardo Rodriguez &copy; 2023
+        Eduardo Rodriguez &copy; 2024
       </Link>
     </>
   );
